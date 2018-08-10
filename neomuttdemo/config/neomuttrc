@@ -32,6 +32,15 @@ set edit_headers
 
 set reverse_alias
 
+
+#==========================================================
+# Index
+#==========================================================
+set pager_index_lines        = 10
+set date_format="%a, %d. %b %H:%M"
+set folder_format="%2C %8s %d %t %N %f"
+set index_format="%1H %4C %Z %D [%-22.22F] (%<l?%4l&%4c>) %s"
+
 #==========================================================
 # View E-Mail - pager
 #==========================================================
@@ -41,6 +50,79 @@ unignore From Subject To Cc Bcc
 unignore Reply-To User-Agent
 unignore Organization
 unignore List-Id
+
+color normal     	default        	default
+color indicator  	brightyellow   	red    
+color tree       	default  	default 
+color status     	brightgreen    	blue    
+color error      	brightred      	default 
+color message    	red            	default 
+color signature  	red            	default 
+color attachment 	yellow   	default     
+color search     	brightyellow   	red     
+color tilde      	brightmagenta  	default 
+color markers    	red            	default 
+color hdrdefault 	cyan           	default 
+color bold       	green          	black   
+color underline  	yellow         	black   
+
+
+color index_flags      black          white     	~D
+color index_flags      green          default   	~g
+color index_flags      brightgreen    default   	~G
+color index_author	blue	white	~P
+color index_author		 blue         	brightred   ~F
+color index_author		 yellow         	default   ~l
+color index_number 		green 	default
+color index_date	cyan default 
+color index_flags	yellow  default		~N
+color index_flags	yellow  default		~l
+color index_size	cyan	default
+
+color index_author	 	blue	brightred ~F	
+color index_author		default magenta 		'%f Familie'
+color index_author		default red			'%f Work'
+color index_author		black yellow			'%f Linux'
+
+color header	brightcyan 	default	'^From:'
+color header	brightyellow 	default	'^Subject:'
+color header	black	brightgreen	'^User-Agent:.*Mutt'
+color header	black	green	'^X-Mailer: Evolution' 
+color header	black	green	'^User-Agent: Mozilla/5.0.*Linux'
+color header	black	red	'^User-Agent: Mozilla/5.0.*Windows'
+
+color body	brightcyan	default  	"[-a-z_0-9.+]+@[-a-z_0-9.]+"
+color body	cyan		default  	"((ftp|http|https)://|news:)[^ >)\"\t]+"
+color body	white brightblue	  		"\\[[0-9]+\\]"
+color body yellow default "\\[\\.\\.\\.?\\]"
+color body	yellow		brightblack  		"[;:]-*[)oO>(<D]"
+color body	yellow		brightblack  		"[😀😁😂😃😄😅😆😇😈😉😊😋😌😍😎😏]"
+color body	yellow		brightblack  		"[😐😑😒😓😔😕😖😗😘😙😚😛😜😝😞😟]"
+color body brightwhite default   "([0-2][0-9]|[0-9]|[1-2][0-9]):[0-5][0-9](:[0-5][0-9])?"
+color body	brightwhite default  		"([0-3])?[0-9]\\.([0-1])?[0-9]\\.([1-2][0-9])?[0-9][0-9]"
+color body	brightgreen default 	"(^| )_[[:print:]]+_[ \n]"
+color body	brightred		default		"(^| )\\*[[:print:]]+\\*[,.?!]?[ \n]"
+color body brightdefault default  "^[[:blank:]]*-[[:print:]]+$"
+color body brightdefault default  "^[[:blank:]]*\\*[[:print:]]+$"
+color body brightdefault  blue "^==+[[:print:]]+$"
+color body brightdefault  blue "^-----+$"
+color quoted     magenta        default 
+color quoted1    red            default 
+color quoted2    green          default 
+color quoted3    magenta        default 
+color quoted4    blue           default 
+color quoted5    cyan           default 
+color quoted6    green          default 
+color quoted7    red            default 
+color quoted8    magenta        default 
+color quoted9    blue           default 
+color status     brightgreen    blue
+color status     brightgreen    red
+color status     brightgreen    magenta
+color status     brightgreen    blue
+color status     brightgreen    green
+color status     brightgreen    blue
+
 
 
 
