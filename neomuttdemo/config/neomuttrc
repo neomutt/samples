@@ -1,0 +1,27 @@
+# Neomutt configuration file - demo configuration
+#
+
+set realname = "Your name"
+
+#==========================================================
+# Mailbox setup
+#==========================================================
+
+set mbox_type      = "Maildir"
+set folder         = "~/neomuttdemo/maildir/"
+set spoolfile      = "+Inbox"
+
+set postponed      = "+Drafts"
+set record         = "+Sent"
+set trash          = "+Trash"
+
+set tmpdir         = "/tmp"
+
+
+#==========================================================
+# Compose
+#==========================================================
+
+set editor         = "vim"
+set edit_headers
+
