@@ -1,7 +1,7 @@
 # Neomutt configuration file - demo configuration
 #
 
-set realname = "Your name"
+set realname       = "Your name"
 
 #==========================================================
 # Mailbox setup
@@ -24,4 +24,23 @@ set tmpdir         = "/tmp"
 
 set editor         = "vim"
 set edit_headers
+
+
+#==========================================================
+# alias - neomutt's addressbook
+#==========================================================
+
+set reverse_alias
+
+#==========================================================
+# View E-Mail - pager
+#==========================================================
+
+ignore *
+unignore From Subject To Cc Bcc 
+unignore Reply-To User-Agent
+unignore Organization
+unignore List-Id
+
+
 
