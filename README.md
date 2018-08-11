@@ -26,5 +26,5 @@ In snippets you can find config-snippets.
 # regular expressions
 
 Collection of regular expressions
-
+https://github.com/neomutt/samples/wiki/Regular-expressions
 
