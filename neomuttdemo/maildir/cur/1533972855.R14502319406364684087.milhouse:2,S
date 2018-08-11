@@ -1,0 +1,32 @@
+From: The Neomutt-Team <neomutt@mail> 
+To: me@mail
+Subject: Neomutt User Guide - Getting started - Select me and press Enter 😉
+Date: Mi, 08 Aug 2018 12:00:00 +0000 (GMT)
+
+Hello neomutt-user,
+
+this is a small Neomutt Demo with a User Guide.
+
+                   Neomutt 
+       “Teaching an Old Dog New Tricks”  
+
+Press <Enter> to scroll down.
+
+# The Basics
+
+The 'index' is the screen that you usually see first when you
+start NeoMutt. It gives an overview over your emails in the
+currently opened mailbox. By default, this is your system
+mailbox. The information you see in the index is a list of
+emails, each with its number on the left, its flags (new
+email, important email, email that has been forwarded or
+replied to, tagged email, ...), the date when email was
+sent, its sender, the email size, and the subject.
+Additionally, the index also shows thread hierarchies: when
+you reply to an email, and the other person replies back,
+you can see the other person's email in a "sub-tree" below.
+This is especially useful for personal email between a group
+of people or when you've subscribed to mailing lists.
+
+
+The Neomutt-Team

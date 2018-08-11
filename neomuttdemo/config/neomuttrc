@@ -3,6 +3,8 @@
 
 set realname       = "Your name"
 
+alternates me@mail
+
 #==========================================================
 # Mailbox setup
 #==========================================================
@@ -17,12 +19,13 @@ set trash          = "+Trash"
 
 set tmpdir         = "/tmp"
 
+mailboxes          = "+Inbox" "+Linux"
 
 #==========================================================
 # Compose
 #==========================================================
 
-set editor         = "vim"
+set editor         = "vim -c 'set tw=60' -c 'startinsert' -c 'set spell spelllang=en'
 set edit_headers
 
 
@@ -50,6 +53,13 @@ unignore From Subject To Cc Bcc
 unignore Reply-To User-Agent
 unignore Organization
 unignore List-Id
+
+#==========================================================
+# 
+#==========================================================
+
+subscribe -group neomutt neomutt@mail
+
 
 color normal     	default        	default
 color indicator  	brightyellow   	red    
@@ -80,9 +90,11 @@ color index_flags	yellow  default		~l
 color index_size	cyan	default
 
 color index_author	 	blue	brightred ~F	
+
 color index_author		default magenta 		'%f Familie'
 color index_author		default red			'%f Work'
-color index_author		black yellow			'%f Linux'
+color index_author		yellow black			'neomutt'
+color index_author		black cyan			'%f Linux'
 
 color header	brightcyan 	default	'^From:'
 color header	brightyellow 	default	'^Subject:'
@@ -106,6 +118,9 @@ color body brightdefault default  "^[[:blank:]]*-[[:print:]]+$"
 color body brightdefault default  "^[[:blank:]]*\\*[[:print:]]+$"
 color body brightdefault  blue "^==+[[:print:]]+$"
 color body brightdefault  blue "^-----+$"
+
+
+
 color quoted     magenta        default 
 color quoted1    red            default 
 color quoted2    green          default 
@@ -125,4 +140,18 @@ color status     brightgreen    blue
 
 
 
+#==========================================================
+# Neomutt Guide Colors
+#==========================================================
 
+#==========================================================
+set pager_index_lines = 5
+set help = yes
+set status_on_top = no
+set sidebar_visible = no
+
+# <KEY>
+color body brightdefault  blue "<[[:print:]]+>"
+# neomutt 'names' (Index, Pager,)
+color body cyan default "'index'"
+color body cyan default "'pager'"

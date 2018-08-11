@@ -1,13 +1,22 @@
 From: The Neomutt-Team <neomutt@mail> 
 To: nobody@example
+Cc: me@mail
 Subject: Section 2 - Index  
 Date: Mi, 08 Aug 2018 12:01:00 +0000 (GMT)
 
 Hello neomutt-user,
 
-this is a neomutt-demo.
-
 In this section you will learn what the index is.
+
+Navigation
+============
+
+The Index lists all E-Mails within a mailbox. Each Mail has a number. You can jump to an email
+when you just enter the number and press <Enter>.
+
+ * + - the E-Mail has been sent to you
+ * C - You are in Cc
+ * L - This mail hast been sent do an known Mailinglist.
 
 The Neomutt-Team
 
