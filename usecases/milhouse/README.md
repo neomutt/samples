@@ -69,8 +69,41 @@ Those E-Mails will be sorted via procmail.
 He has a notmuch tagging file: ~/.notmuch-tagging
 
      +work -- from:@work.tld
-     +Neomutt +NeomuttUsers -- folder:Mailinglist/NeoMutt/Neomutt-Users/
-     +Neomutt +NeomuttDevel -- folder:Mailinglist/NeoMutt/Neomutt-Devel/
+     +Neomutt +Neomutt-Users -- folder:Mailinglist/NeoMutt/Neomutt-Users/
+     +Neomutt +Neomutt-Devel -- folder:Mailinglist/NeoMutt/Neomutt-Devel/
      
+## neomutt
+
+    virtual-mailboxes "My Inbox" "notmuch://?query=tag:inbox"
+    virtual-mailboxes "Colleagues" "notmuch://?query=tag:work"
+    virtual-mailboxes "Neomutt-Users" "notmuch://?query=tag:Neomutt-Users"
+    virtual-mailboxes "Neomutt-Devel" "notmuch://?query=tag:Neomutt-Devel"
+    virtual-mailboxes "E-Mails von heute" "notmuch://?query=date:today"
+    virtual-mailboxes "E-Mails von gestern" "notmuch://?query=date:yesterday"
+    virtual-mailboxes "E-Mails von dieser Woche" "notmuch://?query=date:week.."
+    virtual-mailboxes "E-Mails von diesem Monat" "notmuch://?query=date:month.."
+    
+    virtual-mailboxes "E-Mails mit PDF" "notmuch://?query=attachment:\.pdf"
+    virtual-mailboxes "E-Mails mit JPG" "notmuch://?query=attachment:\.jpg%20or%20attachment:\.png"
+
+    subscribe -group Neomutt neomutt-users@neomutt.org
+    subscribe -group Neomutt neomutt-devel@neomutt.org
+
+    color index_author              default yellow                  '%f Neomutt'
+    send-hook "%C Neomutt" 'source ~/.neomutt/profile.linux'
+    
+## Profile
+For each address Milhouse has a profile config for neomutt (~/.neomutt/profile.work).
+Above you can see the send-hook `"%C Neomutt" 'source ~/.neomutt/profile.linux`.
+When Milhouse sends a mail to an E-Mail address which belongs to the Group Neomutt,
+neomutt will read the profile config for "the his linux account".
+In this config file all setting for the linux account will be done:
+
+    set from        = "milhouse@linux.tld"
+    set realname    = "Milhouse the Linux nerd"
+    set signature   = "~/.neomutt/signature.linux"
+    set gpg_sign_as = 0x1234567
+    ... SMTP Setting ...
+
 
 
