@@ -17,7 +17,7 @@ Download the neomuttdemo folder and save the folder in your HOME directory.
 
 ### use cases
 
-In the use cases folder a use cases for different scenarios.
+In the use cases folder are config files for use cases of different scenarios.
 
 ### snippets
 
