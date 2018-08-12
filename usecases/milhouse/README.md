@@ -1,8 +1,8 @@
 # Milhouse's neomutt setup
 
-* milhouse@work.tld
-* milhouse@home.tld
-* milhouse@linux.tld
+* `milhouse@work.tld`
+* `milhouse@home.tld`
+* `milhouse@linux.tld`
 
 ## getmail
 
@@ -25,6 +25,9 @@ For each address Milhouse has one setup like "~/.getmail/config/work.rc"
     delete_after = 7
     message_log = ~/.getmail/log
 
+Milhouse can decide for each account, which mailboxes should be used. How long the emails shall stay on the server
+and which rules should be apply (procmail).
+
 ## procmail
 
 For each address Milhouse has a procmail config-file ~/.procmail/work.rc: 
@@ -36,11 +39,38 @@ For each address Milhouse has a procmail config-file ~/.procmail/work.rc:
     LOGABSTRACT=yes
     VERBOSE=on
     DEFAULT=$MAILDIR/Accounts/Work/Archiv-${DATE_YEAR_MONTH}/
-    
+
+For this Work-Account he likes to have the mails in an Archiv-Folder like:
+
+* Archiv-2018-01/
+* Archiv-2018-02/
+* Archiv-2018-03/
+
+## procmail rules
+Milhouse use his linux adress to subscribe to Mailinglisten like neomutt, debian,...
+
+    #####################################################################
+    # Neomutt
+    #####################################################################
+
+    # Neomutt-Users
+    :0
+    * ^List-Id:.*neomutt-users-neomutt\.org
+    Mailinglist/NeoMutt/Neomutt-Users/
+
+    # Neomutt Developers
+    :0
+    * ^List-Id:.*neomutt-devel-neomutt\.org
+    Mailinglist/NeoMutt/Neomutt-Devel/
+
+Those E-Mails will be sorted via procmail.
     
 ## notmuch
 He has a notmuch tagging file: ~/.notmuch-tagging
 
      +work -- from:@work.tld
+     +Neomutt +NeomuttUsers -- folder:Mailinglist/NeoMutt/Neomutt-Users/
+     +Neomutt +NeomuttDevel -- folder:Mailinglist/NeoMutt/Neomutt-Devel/
+     
 
 
