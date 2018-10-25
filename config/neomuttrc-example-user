@@ -1,0 +1,59 @@
+# This is an example for the neomutt configuration file.
+# 
+# 1) Personal settings 
+
+# ========================================================================= 
+# ========================================================================= 
+# 1) Personal settings
+# ========================================================================= 
+# ========================================================================= 
+# Settings about personal data like name, mail,..
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: alternates 
+# -------------------------------------------------------------------------
+# alternates  is used to inform NeoMutt about alternate addresses where you
+# receive mail; you can use regular expressions (regex) to specify
+# alternate  addresses.  This  affects NeoMutt's idea about messages from
+# you, and messages addressed to you.  unalternates  can be used to write
+# exceptions to alternates patterns. To remove a regu‐ lar expression from
+# the alternates list, use the unalternates command with exactly  the same
+# regex or use “*” to remove all entries.  The  optional  -group flag
+# causes all of the subsequent regular expressions to be added to or
+# removed from the named group.
+
+# alternates mymailbox@domain.tld
+# alternates mymailbox@work.tld
+
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: mailboxes
+# -------------------------------------------------------------------------
+# The mailboxes  specifies  folders which can receive mail and which will
+# be checked for new messages. When changing folders, pressing space will
+# cycle through folders with new mail.  The named-mailboxes is an
+# alternative to mailboxes that allows adding a description for a mailbox.
+# NeoMutt can be configured to display the description instead of the
+# mailbox path.  The unmailboxes  command  is used to remove a file name
+# from the list of folders which can receive mail.  If “*” is specified as
+# the file name, the list is emptied.
+# -------------------------------------------------------------------------
+
+# unmailboxes *
+# mailboxes +Drafts +Sent +Spam
+
+# -------------------------------------------------------------------------
+# Name: virtual-mailboxes
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+
+# virtual-mailboxes "Eingang" "notmuch://?query=tag:inbox"
+# virtual-mailboxes "Linux" "notmuch://?query=tag:linux"
+# virtual-mailboxes "E-Mails von heute" "notmuch://?query=date:today"
+# virtual-mailboxes "E-Mails von gestern" "notmuch://?query=date:yesterday"
+# virtual-mailboxes "E-Mails von dieser Woche" "notmuch://?query=date:week.."
+# virtual-mailboxes "E-Mails von diesem Monat" "notmuch://?query=date:month.."
+
+

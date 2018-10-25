@@ -1,0 +1,349 @@
+# This is an example for the neomutt configuration file
+
+# 1) Personal settings 
+# 2) Settings for aliases and address book
+# 3) Mailbox
+# 4) Compose email 
+# 5) neomutt config
+# 6) crypto
+
+# ========================================================================= 
+# ========================================================================= 
+# 1) Personal settings
+# ========================================================================= 
+# ========================================================================= 
+# Settings about personal data like name, mail,..
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: alternates 
+# -------------------------------------------------------------------------
+# alternates  is used to inform NeoMutt about alternate addresses where you
+# receive mail; you can use regular expressions (regex) to specify
+# alternate  addresses.  This  affects NeoMutt's idea about messages from
+# you, and messages addressed to you.  unalternates  can be used to write
+# exceptions to alternates patterns. To remove a regu‐ lar expression from
+# the alternates list, use the unalternates command with exactly  the same
+# regex or use “*” to remove all entries.  The  optional  -group flag
+# causes all of the subsequent regular expressions to be added to or
+# removed from the named group.
+
+# alternates mymailbox@domain.tld
+# alternates mymailbox@work.tld
+
+# ========================================================================= 
+# ========================================================================= 
+# 2) Settings for aliases and address book.
+# ========================================================================= 
+# ========================================================================= 
+# alias defines an alias key for the given addresses. Each address will be
+# resolved  into either  an  email  address  (user@example.com)  or  a
+# named email  address (User Name <user@example.com>)
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: alias_file
+# -------------------------------------------------------------------------
+# The  default  file  in  which  to  save aliases created by the
+# <create-alias> function.  Entries added to this file  are  encoded  in
+# the  character  set  specified  by  $con‐ fig_charset if it is set or the
+# current character set otherwise.
+# -------------------------------------------------------------------------
+
+# set alias_file="~/.neomuttrc"
+# set alias_file="~/.neomutt/alias"
+
+# -------------------------------------------------------------------------
+# Note: NeoMutt will not automatically source this file; you must
+# explicitly use the “source” command for it to be executed in case this
+# option points to a dedicated alias file.  
+# -------------------------------------------------------------------------
+
+# source "~/.neomutt/alias"
+
+# -------------------------------------------------------------------------
+# Name alias_format
+# -------------------------------------------------------------------------
+# Specifies the format of the data displayed for the ``alias'' menu.  The
+# following printf(3)-style sequences are available:
+# %a      Alias name
+# %f      Flags - currently, a ``d'' for an alias marked for deletion
+# %n      Index number
+# %r      Address which alias expands to
+# %t      Character which indicates if the alias is tagged for inclusion
+# -------------------------------------------------------------------------
+
+# set alias_format="%4n %2f %t %-10a   %r"
+
+# -------------------------------------------------------------------------
+# Name: reverse_alias
+# -------------------------------------------------------------------------
+# This variable controls whether or not NeoMutt will display the ``personal''
+# name from your aliases in the index menu if it finds an alias that
+# matches the message's sender.  For example, if you have the following
+# alias:
+# alias juser abd30425@somewhere.net (Joe User)
+# 
+# and then you receive mail which contains the following header:
+# From: abd30425@somewhere.net
+# 
+# It would be displayed in the index menu as ``Joe User'' instead of
+# ``abd30425@somewhere.net.''  This is useful when the person's e-mail
+# address is not human friendly.
+# -------------------------------------------------------------------------
+
+# set reverse_alias=no
+
+# -------------------------------------------------------------------------
+# Name: sort_alias
+# -------------------------------------------------------------------------
+# Specifies how the entries in the ``alias'' menu are sorted.  The
+# following are legal values:
+# - address (sort alphabetically by email address)
+# - alias (sort alphabetically by alias name)
+# - unsorted (leave in order specified in .neomuttrc)
+# -------------------------------------------------------------------------
+
+# set sort_alias=alias
+
+# -------------------------------------------------------------------------
+# Name: alias / unalias
+# -------------------------------------------------------------------------
+# alias  defines a surrogate key for the given address(es). Each address
+# will be resolved into either an email address  (user@example.com) or a
+# named  email  address  (User  Name <user@example.com>).   The  address
+# may be specified in either format, or in the format “user@example.com
+# (User Name)”.  Note: If you want to create an alias for more than one
+# address, you must  separate the addresses with a comma (“,”).  unalias
+# removes  the  alias corresponding to the given key or all aliases when
+# “*” is used as an argument.  The optional -group flag causes the
+# address(es) to be added  to or  removed from  the named group.
+# -------------------------------------------------------------------------
+
+# unalias *
+# alias Lastname.Firstname Full Name <mailbox@domain.tld>
+# alias -group Groupname Lastname.Firstname Full Name <mailbox@domain.tld>
+
+
+# -------------------------------------------------------------------------
+# Name: query_command
+# -------------------------------------------------------------------------
+# This  specifies  the  command  NeoMutt  will use to make external address
+# queries.  The string may contain a “%s”, which will be substituted with
+# the  query  string  the  user types.   NeoMutt  will  add quotes around
+# the string substituted for “%s” automatically according to shell quoting
+# rules, so you should avoid adding your own.  If no  “%s”  is found  in
+# the  string,  NeoMutt will append the user's query to the end of the
+# string.  See “query” for more information.
+# -------------------------------------------------------------------------
+
+# set query_command = "/usr/bin/lbdbq '%s'"
+
+# ========================================================================= 
+# 3) Mailbox  
+# ========================================================================= 
+# Setting of composing emails
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: mbox_type
+# -------------------------------------------------------------------------
+# The default mailbox type used when creating new folders. May be any of
+# “mbox”, “MMDF”, “MH” or “Maildir”.
+# -------------------------------------------------------------------------
+
+# set mbox_type=mbox
+# set mbox_type=Maildir
+
+# -------------------------------------------------------------------------
+# Name: folder
+# -------------------------------------------------------------------------
+# Specifies the default location of your mailboxes.  A “+” or “=” at the
+# beginning  of  a pathname  will be expanded to the value of this
+# variable.  Note that if you change this variable (from the default) value
+# you need to make  sure  that  the  assignment  occurs before you use “+”
+# or “=” for any other variables since expansion takes place when han‐
+# dling the “mailboxes” command.
+# -------------------------------------------------------------------------
+
+# set folder=~/Mail
+
+# -------------------------------------------------------------------------
+# Name: spoolfile
+# -------------------------------------------------------------------------
+# If your spool mailbox is in a non-default place where NeoMutt cannot find
+# it,  you  can specify its location with this variable.  If not specified,
+# then the environment variables $MAIL and $MAILDIR will be checked.  
+# -------------------------------------------------------------------------
+
+# set spoolfile = ""
+
+# -------------------------------------------------------------------------
+# Name: postponed
+# -------------------------------------------------------------------------
+# NeoMutt  allows you to indefinitely “postpone sending a message” which
+# you are editing.  When you choose to postpone a message, NeoMutt saves it
+# in  the  mailbox  specified  by this variable.  Also see the $postpone
+# variable.
+# -------------------------------------------------------------------------
+
+# set postponed = "~/postponed"
+# set postponed = "+Drafts"
+
+# -------------------------------------------------------------------------
+# Name: record
+# -------------------------------------------------------------------------
+# This specifies the file into which your outgoing messages should be
+# appended.  (This is meant as the primary method for saving a copy of your
+# messages, but another way  to  do this  is using the “my_hdr” command to
+# create a “Bcc:” field with your email address in it.) The value of
+# $record is overridden by the $force_name and $save_name variables, and
+# the “fcc-hook” command.  Also see $copy.  
+# -------------------------------------------------------------------------
+
+# set record = "~/sent"
+# set record = "+Sent"
+
+# -------------------------------------------------------------------------
+# Name: trash
+# -------------------------------------------------------------------------
+# If set, this variable specifies the path of the trash folder where the
+# mails marked for deletion will be moved, instead of being irremediably
+# purged.  NOTE:  When you delete a message in the trash folder, it is
+# really deleted, so that you have a way to clean the trash.
+# -------------------------------------------------------------------------
+
+# set trash = ""
+# set trash = "+Trash"
+
+# ========================================================================= 
+# 4) Compose email 
+# ========================================================================= 
+# Setting of composing emails
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: my_hdr / unmy_hdr
+# -------------------------------------------------------------------------
+# Using my_hdr, you can define headers which will be added to the messages
+# you  compose.  unmy_hdr will remove the given user-defined headers.
+# -------------------------------------------------------------------------
+
+# unmy_hdr *
+# my_hdr X-Location: Europe, Germany
+
+# -------------------------------------------------------------------------
+# Name: user_agent
+# -------------------------------------------------------------------------
+# When set, NeoMutt will add a “User-Agent:”  header  to  outgoing
+# messages,  indicating which version of NeoMutt was used for composing
+# them.
+# -------------------------------------------------------------------------
+
+# set user_agent
+
+# -------------------------------------------------------------------------
+# Name: editor
+# -------------------------------------------------------------------------
+# This variable specifies which editor is used by NeoMutt.  It defaults to
+# the  value  of the  $VISUAL,  or  $EDITOR,  environment  variable, or to
+# the string “vi” if neither of those are set.  The $editor string may
+# contain a %s escape, which will be replaced by the name  of  the file  to
+# be edited.  If the %s escape does not appear in $editor, a space and the
+# name to be edited are appended.  The resulting string is then executed by
+# running sh -c 'string' where string is the expansion of $editor described
+# above.
+# -------------------------------------------------------------------------
+
+# set editor = "vi"
+# set editor="vim -c 'set spell spelllang=de,en' -c 'set colorcolumn=72' -c 'startinsert' -c 'set tw=7    2 et' -c 'set wrap' '+/^$'"
+
+# -------------------------------------------------------------------------
+# Name: edit_headers
+# -------------------------------------------------------------------------
+# This option allows you to edit the header of your outgoing messages along
+# with the body of your message.  Although  the  compose menu may have
+# localized header labels, the labels passed to your editor will be
+# standard RFC2822 headers, (e.g. To:, Cc:, Subject:).  Headers  added  in
+# your editor must also be RFC2822 headers, or one of the pseudo headers
+# listed in “edit- header”.  NeoMutt will not understand localized header
+# labels, just  as  it  would  not when parsing an actual email.  Note
+# that changes made to the References: and Date: headers are ignored for
+# interoper‐ ability reasons.
+# -------------------------------------------------------------------------
+
+# set edit_headers
+
+# -------------------------------------------------------------------------
+# Name: ispell
+# -------------------------------------------------------------------------
+# How to invoke ispell (GNU's spell-checking software).
+# -------------------------------------------------------------------------
+
+# set ispell="ispell"
+# set ispell="aspell -e -c"
+
+# -------------------------------------------------------------------------
+# Name: attribution
+# -------------------------------------------------------------------------
+# This is the string that will precede a message which has been included in
+# a reply.  For a full listing of defined printf(3)-like sequences see the
+# section on $index_format.
+
+# set attribution = "On %d, %n wrote:"
+# set attribution = "Am %{%A}, den %{%x} um %{%X} %{%Z} schrieb %F:"
+
+# -------------------------------------------------------------------------
+# Name: forward_format
+# -------------------------------------------------------------------------
+# This variable controls the default subject when forwarding a message.  It
+# uses the same format sequences as the $index_format variable.
+# -------------------------------------------------------------------------
+
+# set forward_format = "[%a: %s]"
+
+# ========================================================================= 
+# 5) neomutt config
+# ========================================================================= 
+# Configuration settings for neomutt
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: tmpdir
+# -------------------------------------------------------------------------
+# This variable allows you to specify where NeoMutt will place its
+# temporary files needed for displaying and composing messages.  If this
+# variable is not set, the environment variable $TMPDIR is used.   Failing
+# that, then “/tmp” is used.
+# -------------------------------------------------------------------------
+
+# set tmpdir=/tmp
+
+# ========================================================================= 
+# 6) crypto
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: crypt_use_gpgme
+# -------------------------------------------------------------------------
+# This  variable controls the use of the GPGME-enabled crypto backends.  If
+# it is set and NeoMutt was built with gpgme support, the gpgme code for
+# S/MIME and PGP  will  be  used instead  of  the classic code.  Note that
+# you need to set this option in .neomuttrc; it won't have any effect when
+# used interactively.  Note that the GPGME backend does not support
+# creating  old-style  inline  (traditional) PGP encrypted or signed
+# messages (see $pgp_autoinline)
+# -------------------------------------------------------------------------
+
+# set crypt_use_gpgme
+
+# -------------------------------------------------------------------------
+# Name: crypt_use_pka
+# -------------------------------------------------------------------------
+# Controls  whether  NeoMutt  uses  PKA (see
+# http://www.g10code.de/docs/pka-intro.de.pdf) during signature
+# verification (only supported by the GPGME backend).
+# -------------------------------------------------------------------------
+
+# set crypt_use_pka
+

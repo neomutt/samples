@@ -1,0 +1,55 @@
+# This is an example of the neomutt configuration file.
+
+# ========================================================================= 
+# 1) Personal settings
+# ========================================================================= 
+# 
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: realname 
+# -------------------------------------------------------------------------
+# This variable specifies what “real” or “personal” name should be used
+# when sending mes‐ sages.  If not specified, then the user's “real name”
+# will  be  read  from  /etc/passwd.   This option will not be used, if
+# “$from” is set.
+# -------------------------------------------------------------------------
+
+# set realname = "Firstname Lastname"
+
+# -------------------------------------------------------------------------
+# Name: from
+# -------------------------------------------------------------------------
+# When set, this variable contains a default “from” address.  It can be
+# overridden  using “my_hdr” (including from a “send-hook”) and
+# $reverse_name.  This variable is ignored if $use_from is unset.  If not
+# specified, then it may be read from the environment variable $EMAIL.
+# -------------------------------------------------------------------------
+
+# set from="mailbox@domain.tld"
+
+# -------------------------------------------------------------------------
+# Name: signature
+# -------------------------------------------------------------------------
+# Specifies the filename of your signature, which is appended to all
+# outgoing  messages.  If  the filename ends with a pipe (“|”), it is
+# assumed that filename is a shell command and input should be read from
+# its standard output.
+# -------------------------------------------------------------------------
+
+# set signature ="~/.neomutt/signatur" 
+
+# -------------------------------------------------------------------------
+# Name: pgp_default_key
+# -------------------------------------------------------------------------
+# This is the default key-pair to use for PGP operations.  It will be used
+# for encryption (see $postpone_encrypt and $pgp_self_encrypt).  It will
+# also be used for signing unless $pgp_sign_as is set.  The  (now
+# deprecated) pgp_self_encrypt_as is an alias for this variable, and should
+# no longer be used.  (PGP only
+# -------------------------------------------------------------------------
+
+# set pgp_default_key = "0x12345678"
+
+# ========================================================================= 
+ 

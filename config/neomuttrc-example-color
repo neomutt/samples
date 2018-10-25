@@ -1,0 +1,68 @@
+# This is an example of the neomutt configuration file
+
+# ========================================================================= 
+# Look 
+# ========================================================================= 
+# 
+# ========================================================================= 
+
+# -------------------------------------------------------------------------
+# Name: color 
+# -------------------------------------------------------------------------
+# 
+# -------------------------------------------------------------------------
+color normal            default             default
+color indicator         brightyellow        red    
+color tree              default             default 
+color status            brightgreen         blue 
+color error             brightred           default
+color message           red                 default
+color signature         red                 default
+color attachment        yellow              default
+color search            brightyellow        red 
+color tilde             brightmagenta       default
+color markers           red                 default
+color hdrdefault        cyan                default
+color bold              green               black  
+color underline         yellow              black 
+
+color index_flags       black               white           ~D  
+color index_flags       green               default         ~g 
+color index_flags       brightgreen         default         ~G 
+color index_flags       yellow              default         ~N
+
+color index_author      blue                brightred       ~F
+color index_author      black               green          '%f Bekannte'
+color index_author      black               red            '%f Work'
+
+color index_number      green               default
+color index_date        cyan                default 
+color index_size        cyan                default
+
+color header            brightcyan          default        '^From:'
+color header            brightcyan          default        '^Subject:'
+color header            black               brightgreen    '^User-Agent:.*Mutt'
+
+color body              brightwhite         default        "([0-2][0-9]|[0-9]|[1-2][0-9]):[0-5][0-9](:[0-5][0-9])?"
+color body              brightwhite         default        "([0-3])?[0-9]\\.([0-1])?[0-9]\\.([1-2][0-9])?[0-9][0-9]"
+color body              brightgreen         default        "(^| )_[[:print:]]+_[ \n]"
+color body              brightred           default        "(^| )\\*[[:print:]]+\\*[,.?!]?[ \n]"
+color body              brightdefault       default        "^[[:blank:]]*-[[:print:]]+$"
+color body              brightdefault       default        "^[[:blank:]]*\\*[[:print:]]+$"
+color body              brightdefault       blue           "^=+[[:print:]]+$"
+color body              default             blue           "^===+$"
+color body              default             blue           "^---+$"
+color body              brightdefault       blue           "^#+[[:print:]]+$"
+
+color quoted     magenta        default 
+color quoted1    red            default 
+color quoted2    green          default 
+color quoted3    magenta        default 
+color quoted4    blue           default 
+color quoted5    cyan           default 
+color quoted6    green          default 
+color quoted7    red            default 
+color quoted8    magenta        default 
+color quoted9    blue           default 
+
+
