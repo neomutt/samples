@@ -1,0 +1,73 @@
+# -------------------------------------------------------------------------
+# Name: status_format 
+# -------------------------------------------------------------------------
+# Controls the format of the status line displayed in the “index” menu.
+# This string is similar to $index_format, but has its own set of
+# printf(3)-like sequences:
+# 
+# %b     Number of mailboxes with new mail *
+# %d     Number of deleted messages *
+# %f     The full pathname of the current mailbox
+# %F     Number of flagged messages *
+# %h     Local hostname
+# %l     Size (in bytes) of the current mailbox *
+# %L     Size (in bytes) of the messages shown (i.e., which match the current limit) *
+# %m     The number of messages in the mailbox *
+# %M     The number of messages shown (i.e., which match the current limit) *
+# %n     Number of new messages in the mailbox *
+# %o     Number of old unread messages *
+# %p     Number of postponed messages *
+# %P     Percentage of the way through the index
+# %r     Modified/read-only/won't-write/attach-message indicator, According to $status_chars
+# %R     Number of read messages *
+# %s     Current sorting mode ($sort)
+# %S     Current aux sorting method ($sort_aux)
+# %t     Number of tagged messages *
+# %u     Number of unread messages *
+# %v     NeoMutt version string
+# %V     Currently active limit pattern, if any *
+# %>X    Right justify the rest of the string and pad with “X”
+# %|X    Pad to the end of the line with “X”
+# %*X    Soft-fill with character “X” as pad
+# 
+# For an explanation of “soft-fill”, see the $index_format documentation.
+# 
+# * = can be optionally printed if nonzero
+# 
+# Some  of  the above sequences can be used to optionally print a string if
+# their value is nonzero.  For example, you may only want to see the number
+# of flagged messages if such messages exist, # since zero is not
+# particularly meaningful.  To optionally print a string based upon one of
+# the above sequences, the following construct is used:
+#
+# %?<sequence_char>?<optional_string>?
+#
+#
+# where sequence_char is a character from the table above, and
+# optional_string is the string you would like printed if sequence_char is
+#nonzero.  optional_string may contain other sequences  as well as normal
+# text, but you may not nest optional strings.
+#
+# 
+# Here is an example illustrating how to optionally print the number of new messages in a mailbox:
+# 
+# %?n?%n new messages.?
+# 
+# You can also switch between two strings using the following construct:
+# 
+# %?<sequence_char>?<if_string>&<else_string>?
+# 
+# If the value of sequence_char is non-zero, if_string will be expanded, otherwise else_string will be expanded.
+# 
+# You can force the result of any printf(3)-like sequence to be lowercase
+# by prefixing the sequence character with an underscore (“_”) sign.  For
+# example, if you want to display the local host‐ # name in lowercase, you
+# would use: “%_h”. If you prefix the sequence character with a colon
+# (“:”) character, NeoMutt will replace any dots in the expansion by
+# underscores. This might # be helpful with IMAP folders that don't like
+# dots in folder names.  
+-------------------------------------------------------------------------
+
+# set status_format = "-%r-NeoMutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+ 
+
