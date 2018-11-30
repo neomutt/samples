@@ -1,0 +1,15 @@
+# -------------------------------------------------------------------------
+# Name: mailboxes
+# -------------------------------------------------------------------------
+# The mailboxes  specifies  folders which can receive mail and which will
+# be checked for new messages. When changing folders, pressing space will
+# cycle through folders with new mail.  The named-mailboxes is an
+# alternative to mailboxes that allows adding a description for a mailbox.
+# NeoMutt can be configured to display the description instead of the
+# mailbox path.  The unmailboxes  command  is used to remove a file name
+# from the list of folders which can receive mail.  If “*” is specified as
+# the file name, the list is emptied.
+# -------------------------------------------------------------------------
+
+# unmailboxes *
+# mailboxes +Drafts +Sent +Spam

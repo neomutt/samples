@@ -1,0 +1,8 @@
+# -------------------------------------------------------------------------
+# Name: forward_format
+# -------------------------------------------------------------------------
+# This variable controls the default subject when forwarding a message.  It
+# uses the same format sequences as the $index_format variable.
+# -------------------------------------------------------------------------
+
+# set forward_format = "[%a: %s]"

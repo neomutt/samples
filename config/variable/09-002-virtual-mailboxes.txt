@@ -1,0 +1,11 @@
+# -------------------------------------------------------------------------
+# Name: virtual-mailboxes
+# -------------------------------------------------------------------------
+
+# virtual-mailboxes "Eingang" "notmuch://?query=tag:inbox"
+# virtual-mailboxes "Linux" "notmuch://?query=tag:linux"
+# virtual-mailboxes "E-Mails von heute" "notmuch://?query=date:today"
+# virtual-mailboxes "E-Mails von gestern" "notmuch://?query=date:yesterday"
+# virtual-mailboxes "E-Mails von dieser Woche" "notmuch://?query=date:week.."
+# virtual-mailboxes "E-Mails von diesem Monat" "notmuch://?query=date:month.."
+

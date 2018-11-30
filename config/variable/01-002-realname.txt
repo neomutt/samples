@@ -1,0 +1,12 @@
+# -------------------------------------------------------------------------
+# Name: realname 
+# -------------------------------------------------------------------------
+# This variable specifies what “real” or “personal” name should be used
+# when sending mes‐ sages.  If not specified, then the user's “real name”
+# will  be  read  from  /etc/passwd.   This option will not be used, if
+# “$from” is set.
+# -------------------------------------------------------------------------
+
+# set realname = "Firstname Lastname"
+
+

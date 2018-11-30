@@ -1,0 +1,17 @@
+# -------------------------------------------------------------------------
+# Name: alias / unalias
+# -------------------------------------------------------------------------
+# alias  defines a surrogate key for the given address(es). Each address
+# will be resolved into either an email address  (user@example.com) or a
+# named  email  address  (User  Name <user@example.com>).   The  address
+# may be specified in either format, or in the format “user@example.com
+# (User Name)”.  Note: If you want to create an alias for more than one
+# address, you must  separate the addresses with a comma (“,”).  unalias
+# removes  the  alias corresponding to the given key or all aliases when
+# “*” is used as an argument.  The optional -group flag causes the
+# address(es) to be added  to or  removed from  the named group.
+# -------------------------------------------------------------------------
+
+# unalias *
+# alias Lastname.Firstname Full Name <mailbox@domain.tld>
+# alias -group Groupname Lastname.Firstname Full Name <mailbox@domain.tld>

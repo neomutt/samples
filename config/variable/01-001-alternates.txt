@@ -1,0 +1,15 @@
+# -------------------------------------------------------------------------
+# Name: alternates 
+# -------------------------------------------------------------------------
+# alternates  is used to inform NeoMutt about alternate addresses where you
+# receive mail; you can use regular expressions (regex) to specify
+# alternate  addresses.  This  affects NeoMutt's idea about messages from
+# you, and messages addressed to you.  unalternates  can be used to write
+# exceptions to alternates patterns. To remove a regu‐ lar expression from
+# the alternates list, use the unalternates command with exactly  the same
+# regex or use “*” to remove all entries.  The  optional  -group flag
+# causes all of the subsequent regular expressions to be added to or
+# removed from the named group.
+
+# alternates mymailbox@domain.tld
+# alternates mymailbox@work.tld

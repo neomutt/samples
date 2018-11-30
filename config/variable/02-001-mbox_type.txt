@@ -1,0 +1,9 @@
+# -------------------------------------------------------------------------
+# Name: mbox_type
+# -------------------------------------------------------------------------
+# The default mailbox type used when creating new folders. May be any of
+# “mbox”, “MMDF”, “MH” or “Maildir”.
+# -------------------------------------------------------------------------
+
+# set mbox_type=mbox
+# set mbox_type=Maildir

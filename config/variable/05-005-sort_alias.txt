@@ -1,0 +1,11 @@
+# -------------------------------------------------------------------------
+# Name: sort_alias
+# -------------------------------------------------------------------------
+# Specifies how the entries in the ``alias'' menu are sorted.  The
+# following are legal values:
+# - address (sort alphabetically by email address)
+# - alias (sort alphabetically by alias name)
+# - unsorted (leave in order specified in .neomuttrc)
+# -------------------------------------------------------------------------
+
+# set sort_alias=alias

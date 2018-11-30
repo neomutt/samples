@@ -1,0 +1,9 @@
+# -------------------------------------------------------------------------
+# Name: spoolfile
+# -------------------------------------------------------------------------
+# If your spool mailbox is in a non-default place where NeoMutt cannot find
+# it,  you  can specify its location with this variable.  If not specified,
+# then the environment variables $MAIL and $MAILDIR will be checked.  
+# -------------------------------------------------------------------------
+
+# set spoolfile = ""

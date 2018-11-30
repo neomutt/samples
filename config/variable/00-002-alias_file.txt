@@ -1,0 +1,19 @@
+# -------------------------------------------------------------------------
+# Name: alias_file
+# -------------------------------------------------------------------------
+# The  default  file  in  which  to  save aliases created by the
+# <create-alias> function.  Entries added to this file  are  encoded  in
+# the  character  set  specified  by  $con‐ fig_charset if it is set or the
+# current character set otherwise.
+# -------------------------------------------------------------------------
+
+# set alias_file="~/.neomuttrc"
+# set alias_file="~/.neomutt/alias"
+
+# -------------------------------------------------------------------------
+# Note: NeoMutt will not automatically source this file; you must
+# explicitly use the “source” command for it to be executed in case this
+# option points to a dedicated alias file.  
+# -------------------------------------------------------------------------
+
+# source "~/.neomutt/alias"

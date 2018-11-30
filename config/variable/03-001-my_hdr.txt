@@ -1,0 +1,9 @@
+# -------------------------------------------------------------------------
+# Name: my_hdr / unmy_hdr
+# -------------------------------------------------------------------------
+# Using my_hdr, you can define headers which will be added to the messages
+# you  compose.  unmy_hdr will remove the given user-defined headers.
+# -------------------------------------------------------------------------
+
+# unmy_hdr *
+# my_hdr X-Location: Europe, Germany
