@@ -1,0 +1,42 @@
+# -------------------------------------------------------------------------
+# Name: color
+# -------------------------------------------------------------------------
+# color object foreground background
+# color { header | body } foreground background regex
+# color index-object foreground background pattern
+# color compose composeobject foreground background
+#
+# If your terminal supports color, these commands can be used to assign
+# foreground/background combinations to certain objects. The currently
+# defined  objects  are: attach_headers,  attachment, body,  bold,  error,
+# hdrdefault, header, index, index_author, index_collapsed, index_date,
+# index_flags, index_label, index_number, index_size, index_subject,
+# index_tag, index_tags, indicator, markers, message, normal, progress,
+# prompt, quoted, quotedN, search, signature, status, tilde, tree,
+# underline.
+#
+# If the sidebar is enabled the following objects are also valid:
+# sidebar_divider, sidebar_flagged, sidebar_highlight, sidebar_indicator,
+# sidebar_new, sidebar_ordinary, sidebar_spoolfile. 
+#
+# The body and header objects allow you to restrict the colorization to a
+# regular expression.  The index-object permits you to select colored
+# messages by pattern.  
+#
+# The header and body match regex in the header/body of a message,
+# index-object can match pattern in the message index.  Note that IMAP
+# server-side searches (=b, =B, =h) are not  supported  for color index
+# patterns.
+#
+# Valid colors include: default, black, red, green, yellow, blue, magenta,
+# cyan, white, colorN.
+#
+# The  uncolor command can be applied to the index, header and body objects
+# only. It removes entries from the list. You must specify the same pattern
+# specified in the color command for it to be removed. The pattern “*” is a
+# special token which means to clear the color list of all entries.
+#
+# For further information on colorization, please consult the NeoMutt
+# manual.
+# -------------------------------------------------------------------------
+
