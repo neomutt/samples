@@ -1,0 +1,8 @@
+# -------------------------------------------------------------------------
+# Name: nm_record_tags 
+# -------------------------------------------------------------------------
+# This variable specifies the default tags applied to messages stored to
+# the NeoMutt record.  When set to 0 this variable disable the window
+# feature.
+
+# set nm_record_tags = "-inbox,sent,local"

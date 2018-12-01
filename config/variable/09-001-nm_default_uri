@@ -1,0 +1,8 @@
+# -------------------------------------------------------------------------
+# Name: nm_default_uri 
+# -------------------------------------------------------------------------
+# This variable specifies the default Notmuch database in format
+# notmuch://<absolute path>. 
+
+# set nm_default_uri = "notmuch:///home/user/.mail"
+

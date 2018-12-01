@@ -1,0 +1,7 @@
+# -------------------------------------------------------------------------
+# Name: nm_record 
+# -------------------------------------------------------------------------
+# This variable specifies if the NeoMutt record should indexed by notmuch. 
+# 
+
+# set nm_record = no 
