@@ -1,0 +1,8 @@
+# -------------------------------------------------------------------------
+# Name: imap_user 
+# -------------------------------------------------------------------------
+# The name of the user whose mail you intend to access on the IMAP server.
+# This variable defaults to your user name on the local machine.
+
+# set imap_user = "imapuser"
+

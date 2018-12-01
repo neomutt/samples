@@ -1,0 +1,13 @@
+# -------------------------------------------------------------------------
+# Name: imap_pass 
+# -------------------------------------------------------------------------
+# Specifies the password for your IMAP account.  If unset, NeoMutt will
+# prompt you for your password when you invoke the <imap-fetch-mail>
+# function or try to open an IMAP folder. 
+# 
+# Warning: you should only use this option when you are on a fairly secure
+# machine, because the superuser can read your neomuttrc even if you are
+# the only one who can read the file.
+
+# set imap_pass = "imappasswd"
+
