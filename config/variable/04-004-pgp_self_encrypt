@@ -1,0 +1,8 @@
+# -------------------------------------------------------------------------
+# Name: pgp_self_encrypt 
+# -------------------------------------------------------------------------
+# When set, PGP encrypted messages will also be encrypted using the key in
+# $pgp_default_key.  (PGP only)
+# -------------------------------------------------------------------------
+
+# set pgp_self_encrypt = yes
