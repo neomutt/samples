@@ -1,46 +1,16 @@
-# This is an example for the neomutt configuration file
-
-# 1) Personal settings 
-# 2) Settings for aliases and address book
-# 3) Mailbox
-# 4) Compose email 
-# 5) neomutt config
-# 6) crypto
-
-# ========================================================================= 
-# ========================================================================= 
-# 1) Personal settings
-# ========================================================================= 
-# ========================================================================= 
-# Settings about personal data like name, mail,..
-# ========================================================================= 
-
+##########################################################################
+#   00 - Neomutt configuration
+##########################################################################
 # -------------------------------------------------------------------------
-# Name: alternates 
+# Name: tmpdir
 # -------------------------------------------------------------------------
-# alternates  is used to inform NeoMutt about alternate addresses where you
-# receive mail; you can use regular expressions (regex) to specify
-# alternate  addresses.  This  affects NeoMutt's idea about messages from
-# you, and messages addressed to you.  unalternates  can be used to write
-# exceptions to alternates patterns. To remove a regu‐ lar expression from
-# the alternates list, use the unalternates command with exactly  the same
-# regex or use “*” to remove all entries.  The  optional  -group flag
-# causes all of the subsequent regular expressions to be added to or
-# removed from the named group.
+# This variable allows you to specify where NeoMutt will place its
+# temporary files needed for displaying and composing messages.  If this
+# variable is not set, the environment variable $TMPDIR is used.   Failing
+# that, then “/tmp” is used.
+# -------------------------------------------------------------------------
 
-# alternates mymailbox@domain.tld
-# alternates mymailbox@work.tld
-
-# ========================================================================= 
-# ========================================================================= 
-# 2) Settings for aliases and address book.
-# ========================================================================= 
-# ========================================================================= 
-# alias defines an alias key for the given addresses. Each address will be
-# resolved  into either  an  email  address  (user@example.com)  or  a
-# named email  address (User Name <user@example.com>)
-# ========================================================================= 
-
+# set tmpdir=/tmp
 # -------------------------------------------------------------------------
 # Name: alias_file
 # -------------------------------------------------------------------------
@@ -60,52 +30,59 @@
 # -------------------------------------------------------------------------
 
 # source "~/.neomutt/alias"
-
 # -------------------------------------------------------------------------
-# Name alias_format
+# Name: query_command
 # -------------------------------------------------------------------------
-# Specifies the format of the data displayed for the ``alias'' menu.  The
-# following printf(3)-style sequences are available:
-# %a      Alias name
-# %f      Flags - currently, a ``d'' for an alias marked for deletion
-# %n      Index number
-# %r      Address which alias expands to
-# %t      Character which indicates if the alias is tagged for inclusion
-# -------------------------------------------------------------------------
-
-# set alias_format="%4n %2f %t %-10a   %r"
-
-# -------------------------------------------------------------------------
-# Name: reverse_alias
-# -------------------------------------------------------------------------
-# This variable controls whether or not NeoMutt will display the ``personal''
-# name from your aliases in the index menu if it finds an alias that
-# matches the message's sender.  For example, if you have the following
-# alias:
-# alias juser abd30425@somewhere.net (Joe User)
-# 
-# and then you receive mail which contains the following header:
-# From: abd30425@somewhere.net
-# 
-# It would be displayed in the index menu as ``Joe User'' instead of
-# ``abd30425@somewhere.net.''  This is useful when the person's e-mail
-# address is not human friendly.
+# This  specifies  the  command  NeoMutt  will use to make external address
+# queries.  The string may contain a “%s”, which will be substituted with
+# the  query  string  the  user types.   NeoMutt  will  add quotes around
+# the string substituted for “%s” automatically according to shell quoting
+# rules, so you should avoid adding your own.  If no  “%s”  is found  in
+# the  string,  NeoMutt will append the user's query to the end of the
+# string.  See “query” for more information.
 # -------------------------------------------------------------------------
 
-# set reverse_alias=no
+# set query_command = "/usr/bin/lbdbq '%s'"
+##########################################################################
+#   01 - Basic personal setup
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: alternates 
+# -------------------------------------------------------------------------
+# alternates  is used to inform NeoMutt about alternate addresses where you
+# receive mail; you can use regular expressions (regex) to specify
+# alternate  addresses.  This  affects NeoMutt's idea about messages from
+# you, and messages addressed to you.  unalternates  can be used to write
+# exceptions to alternates patterns. To remove a regu‐ lar expression from
+# the alternates list, use the unalternates command with exactly  the same
+# regex or use “*” to remove all entries.  The  optional  -group flag
+# causes all of the subsequent regular expressions to be added to or
+# removed from the named group.
+
+# alternates mymailbox@domain.tld
+# alternates mymailbox@work.tld
+# -------------------------------------------------------------------------
+# Name: realname 
+# -------------------------------------------------------------------------
+# This variable specifies what “real” or “personal” name should be used
+# when sending mes‐ sages.  If not specified, then the user's “real name”
+# will  be  read  from  /etc/passwd.   This option will not be used, if
+# “$from” is set.
+# -------------------------------------------------------------------------
+
+# set realname = "Firstname Lastname"
+
 
 # -------------------------------------------------------------------------
-# Name: sort_alias
+# Name: from
 # -------------------------------------------------------------------------
-# Specifies how the entries in the ``alias'' menu are sorted.  The
-# following are legal values:
-# - address (sort alphabetically by email address)
-# - alias (sort alphabetically by alias name)
-# - unsorted (leave in order specified in .neomuttrc)
+# When set, this variable contains a default “from” address.  It can be
+# overridden  using “my_hdr” (including from a “send-hook”) and
+# $reverse_name.  This variable is ignored if $use_from is unset.  If not
+# specified, then it may be read from the environment variable $EMAIL.
 # -------------------------------------------------------------------------
 
-# set sort_alias=alias
-
+# set from="mailbox@domain.tld"
 # -------------------------------------------------------------------------
 # Name: alias / unalias
 # -------------------------------------------------------------------------
@@ -123,28 +100,9 @@
 # unalias *
 # alias Lastname.Firstname Full Name <mailbox@domain.tld>
 # alias -group Groupname Lastname.Firstname Full Name <mailbox@domain.tld>
-
-
-# -------------------------------------------------------------------------
-# Name: query_command
-# -------------------------------------------------------------------------
-# This  specifies  the  command  NeoMutt  will use to make external address
-# queries.  The string may contain a “%s”, which will be substituted with
-# the  query  string  the  user types.   NeoMutt  will  add quotes around
-# the string substituted for “%s” automatically according to shell quoting
-# rules, so you should avoid adding your own.  If no  “%s”  is found  in
-# the  string,  NeoMutt will append the user's query to the end of the
-# string.  See “query” for more information.
-# -------------------------------------------------------------------------
-
-# set query_command = "/usr/bin/lbdbq '%s'"
-
-# ========================================================================= 
-# 3) Mailbox  
-# ========================================================================= 
-# Setting of composing emails
-# ========================================================================= 
-
+##########################################################################
+#   02 - Mailbox and folders
+##########################################################################
 # -------------------------------------------------------------------------
 # Name: mbox_type
 # -------------------------------------------------------------------------
@@ -154,7 +112,6 @@
 
 # set mbox_type=mbox
 # set mbox_type=Maildir
-
 # -------------------------------------------------------------------------
 # Name: folder
 # -------------------------------------------------------------------------
@@ -167,7 +124,6 @@
 # -------------------------------------------------------------------------
 
 # set folder=~/Mail
-
 # -------------------------------------------------------------------------
 # Name: spoolfile
 # -------------------------------------------------------------------------
@@ -177,7 +133,6 @@
 # -------------------------------------------------------------------------
 
 # set spoolfile = ""
-
 # -------------------------------------------------------------------------
 # Name: postponed
 # -------------------------------------------------------------------------
@@ -189,7 +144,6 @@
 
 # set postponed = "~/postponed"
 # set postponed = "+Drafts"
-
 # -------------------------------------------------------------------------
 # Name: record
 # -------------------------------------------------------------------------
@@ -203,7 +157,6 @@
 
 # set record = "~/sent"
 # set record = "+Sent"
-
 # -------------------------------------------------------------------------
 # Name: trash
 # -------------------------------------------------------------------------
@@ -216,12 +169,24 @@
 # set trash = ""
 # set trash = "+Trash"
 
-# ========================================================================= 
-# 4) Compose email 
-# ========================================================================= 
-# Setting of composing emails
-# ========================================================================= 
+# -------------------------------------------------------------------------
+# Name: mailboxes
+# -------------------------------------------------------------------------
+# The mailboxes  specifies  folders which can receive mail and which will
+# be checked for new messages. When changing folders, pressing space will
+# cycle through folders with new mail.  The named-mailboxes is an
+# alternative to mailboxes that allows adding a description for a mailbox.
+# NeoMutt can be configured to display the description instead of the
+# mailbox path.  The unmailboxes  command  is used to remove a file name
+# from the list of folders which can receive mail.  If “*” is specified as
+# the file name, the list is emptied.
+# -------------------------------------------------------------------------
 
+# unmailboxes *
+# mailboxes +Drafts +Sent +Spam
+##########################################################################
+#   03 - Compose email 
+##########################################################################
 # -------------------------------------------------------------------------
 # Name: my_hdr / unmy_hdr
 # -------------------------------------------------------------------------
@@ -231,7 +196,6 @@
 
 # unmy_hdr *
 # my_hdr X-Location: Europe, Germany
-
 # -------------------------------------------------------------------------
 # Name: user_agent
 # -------------------------------------------------------------------------
@@ -257,7 +221,6 @@
 
 # set editor = "vi"
 # set editor="vim -c 'set spell spelllang=de,en' -c 'set colorcolumn=72' -c 'startinsert' -c 'set tw=7    2 et' -c 'set wrap' '+/^$'"
-
 # -------------------------------------------------------------------------
 # Name: edit_headers
 # -------------------------------------------------------------------------
@@ -273,7 +236,6 @@
 # -------------------------------------------------------------------------
 
 # set edit_headers
-
 # -------------------------------------------------------------------------
 # Name: ispell
 # -------------------------------------------------------------------------
@@ -282,7 +244,6 @@
 
 # set ispell="ispell"
 # set ispell="aspell -e -c"
-
 # -------------------------------------------------------------------------
 # Name: attribution
 # -------------------------------------------------------------------------
@@ -292,7 +253,6 @@
 
 # set attribution = "On %d, %n wrote:"
 # set attribution = "Am %{%A}, den %{%x} um %{%X} %{%Z} schrieb %F:"
-
 # -------------------------------------------------------------------------
 # Name: forward_format
 # -------------------------------------------------------------------------
@@ -301,28 +261,46 @@
 # -------------------------------------------------------------------------
 
 # set forward_format = "[%a: %s]"
-
-# ========================================================================= 
-# 5) neomutt config
-# ========================================================================= 
-# Configuration settings for neomutt
-# ========================================================================= 
-
 # -------------------------------------------------------------------------
-# Name: tmpdir
+# Name: signature
 # -------------------------------------------------------------------------
-# This variable allows you to specify where NeoMutt will place its
-# temporary files needed for displaying and composing messages.  If this
-# variable is not set, the environment variable $TMPDIR is used.   Failing
-# that, then “/tmp” is used.
+# Specifies the filename of your signature, which is appended to all
+# outgoing  messages.  If  the filename ends with a pipe (“|”), it is
+# assumed that filename is a shell command and input should be read from
+# its standard output.
 # -------------------------------------------------------------------------
 
-# set tmpdir=/tmp
+# set signature ="~/.neomutt/signatur" 
+# -------------------------------------------------------------------------
+# Name: empty_subject 
+# -------------------------------------------------------------------------
+# This variable specifies the subject to be used when replying to an email
+# with an empty subject.  It defaults to "Re: your mail".
+# -------------------------------------------------------------------------
 
-# ========================================================================= 
-# 6) crypto
-# ========================================================================= 
+# set empty_subject = "Re: your mail"
 
+# -------------------------------------------------------------------------
+# Name: autoedit
+# -------------------------------------------------------------------------
+# When  set  along  with  $edit_headers, NeoMutt will skip the initial
+# send-menu (prompting for subject and recipients) and allow you to
+# immediately begin editing the body of your message.  The send-menu may
+# still be accessed once you have finished editing the body of your
+# message.
+#
+# Note: when this option is set, you cannot use send-hooks that depend on
+# the recipients when composing a new (non-reply) message, as the initial
+# list of recipients is empty.
+#
+# Also see $fast_reply.
+# -------------------------------------------------------------------------
+
+# set autoedit = no 
+
+##########################################################################
+#   04 - Crypto
+##########################################################################
 # -------------------------------------------------------------------------
 # Name: crypt_use_gpgme
 # -------------------------------------------------------------------------
@@ -336,7 +314,6 @@
 # -------------------------------------------------------------------------
 
 # set crypt_use_gpgme
-
 # -------------------------------------------------------------------------
 # Name: crypt_use_pka
 # -------------------------------------------------------------------------
@@ -346,4 +323,653 @@
 # -------------------------------------------------------------------------
 
 # set crypt_use_pka
+
+# -------------------------------------------------------------------------
+# Name: pgp_default_key
+# -------------------------------------------------------------------------
+# This is the default key-pair to use for PGP operations.  It will be used
+# for encryption (see $postpone_encrypt and $pgp_self_encrypt).  It will
+# also be used for signing unless $pgp_sign_as is set.  The  (now
+# deprecated) pgp_self_encrypt_as is an alias for this variable, and should
+# no longer be used.  (PGP only
+# -------------------------------------------------------------------------
+
+# set pgp_default_key = "0x12345678"
+# -------------------------------------------------------------------------
+# Name: pgp_self_encrypt 
+# -------------------------------------------------------------------------
+# When set, PGP encrypted messages will also be encrypted using the key in
+# $pgp_default_key.  (PGP only)
+# -------------------------------------------------------------------------
+
+# set pgp_self_encrypt = yes
+# -------------------------------------------------------------------------
+# Name: crypt_autoencrypt 
+# -------------------------------------------------------------------------
+# Setting this variable will cause NeoMutt to always attempt to PGP encrypt
+# outgoing messages.  This is probably only useful in connection to the
+# “send-hook” command.  It can be  overridden  by use  of the pgp menu,
+# when encryption is not required or signing is requested as well.  If
+# $smime_is_default is set, then OpenSSL is used instead to create S/MIME
+# messages and settings can be overridden by use of the smime menu instead.
+# (Crypto only)
+# -------------------------------------------------------------------------
+
+# set crypt_autoencrypt = no
+# -------------------------------------------------------------------------
+# Name: crypt_autopgp 
+# -------------------------------------------------------------------------
+# This variable controls  whether  or  not  NeoMutt  may  automatically
+# enable  PGP  encryption/signing  for  messages.   See  also
+# $crypt_autoencrypt,  $crypt_replyencrypt,  $crypt_autosign,
+# $crypt_replysign and $smime_is_default.
+# -------------------------------------------------------------------------
+
+# set crypt_autopgp = yes
+# -------------------------------------------------------------------------
+# Name: crypt_autosign 
+# -------------------------------------------------------------------------
+# Setting this variable will cause NeoMutt to always attempt to
+# cryptographically sign outgoing messages.  This can be overridden by use
+# of the pgp menu, when signing is not required or encryp‐ tion is
+# requested as well. If $smime_is_default is set, then OpenSSL is used
+# instead to create S/MIME messages and settings can be overridden by use
+# of the smime menu instead of the pgp menu.  (Crypto only)
+# -------------------------------------------------------------------------
+
+# set crypt_autosign = no 
+##########################################################################
+#   05 - View / Look
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: index_format 
+# -------------------------------------------------------------------------
+#
+# This variable allows you to customize the message index display to your
+# personal taste.
+#
+# “Format strings” are similar to the strings used in the C function
+# printf(3) to format output (see the man page for more details).  For an
+# explanation of the %? construct, see the status_format description.  The
+# following sequences are defined in NeoMutt:
+#
+# %a     Address of the author
+# %A     Reply-to address (if present; otherwise: address of author)
+# %b     Filename of the original message folder (think mailbox)
+# %B     The list to which the letter was sent, or else the folder name (%b).
+# %C     Current message number
+# %c     Number of characters (bytes) in the message
+# %D     Date and time of message using date_format and local timezone
+# %d     Date and time of message using date_format and sender's timezone
+# %e     Current message number in thread
+# %E     Number of messages in current thread
+# %F     Author name, or recipient name if the message is from you
+# %f     Sender (address + real name), either From: or Return-Path:
+# %g     Newsgroup name (if compiled with NNTP support)
+# %g     Message tags (e.g. notmuch tags/imap flags)
+# %Gx    Individual message tag (e.g. notmuch tags/imap flags)
+# %H     Spam attribute(s) of this message
+# %I     Initials of author
+# %i     Message-id of the current message
+# %J     Message tags (if present, tree unfolded, and != parent's tags)
+# %K     The list to which the letter was sent (if any; otherwise: empty)
+# %L     If an address in the “To:” or “Cc:” header field matches an address Defined by the users “subscribe” command, this displays "To <list-name>", otherwise the same as %F
+# %l     Number of lines in the message (does not work with maildir, Mh, and possibly IMAP folders)
+# %M     Number of hidden messages if the thread is collapsed
+# %m     Total number of message in the mailbox
+# %N     Message score
+# %n     Author's real name (or address if missing)
+# %O     Original save folder where NeoMutt would formerly have Stashed the message: list name or recipient name If not sent to a list
+# %P     Progress indicator for the built-in pager (how much of the file has been displayed)
+# %q     Newsgroup name (if compiled with NNTP support)
+# %R     Comma separated list of “Cc:” recipients
+# %r     Comma separated list of “To:” recipients
+# %S     Single character status of the message (“N”/“O”/“D”/“d”/“!”/“r”/“*”)
+# %s     Subject of the message
+# %T     The appropriate character from the $to_chars string
+# %t     “To:” field (recipients)
+# %u     User (login) name of the author
+# %v     First name of the author, or the recipient if the message is from you
+# %W     Name of organization of author (“Organization:” field)
+# %x     “X-Comment-To:” field (if present and compiled with NNTP support)
+# %X     Number of MIME attachments (please see the “attachments” section for possible speed effects)
+# %Y     “X-Label:” field, if present, and (1) not at part of a thread tree, (2) at the top of a thread, or (3) “X-Label:” is different from Preceding message's “X-Label:”
+# %y     “X-Label:” field, if present
+# %Z     A  three  character  set  of  message  status  flags.   The  first  character  is  new/read/replied  flags  (“n”/“o”/“r”/“O”/“N”).   The  second  is   deleted   or   encryption   flags
+# (“D”/“d”/“S”/“P”/“s”/“K”).  The third is either tagged/flagged (“*”/“!”), or one of the characters Listed in $to_chars.
+# %zc    Message crypto flags
+# %zs    Message status flags
+# %zt    Message tag flags
+# %{fmt} the date and time of the message is converted to sender's time zone, and “fmt” is expanded by the library function strftime(3); a leading bang disables locales
+# %[fmt] the date and time of the message is converted to the local time zone, and “fmt” is expanded by the library function strftime(3); a leading bang disables locales
+# %(fmt) the local date and time when the message was received.  “fmt” is expanded by the library function strftime(3); a leading bang disables locales
+# %>X    right justify the rest of the string and pad with character “X”
+# %|X    pad to the end of the line with character “X”
+# %*X    soft-fill with character “X” as pad
+#
+# Date format expressions can be constructed based on relative dates. Using the date formatting operators along with nested conditionals, the date format can be modified based on how old a mes‐
+# sage is.  See the section on “Conditional Dates” for an explanation and examples “Soft-fill” deserves some explanation: Normal right-justification will print everything to  the  left  of  the
+# “%>”,  displaying  padding and whatever lies to the right only if there's room. By contrast, soft-fill gives priority to the right-hand side, guaranteeing space to display it and showing pad‐
+# ding only if there's still room. If necessary, soft-fill will eat text leftwards to make room for rightward text.
+#
+# Note that these expandos are supported in “save-hook”, “fcc-hook” and “fcc-save-hook”, too.
+# -------------------------------------------------------------------------
+
+# set index_format="%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+
+# -------------------------------------------------------------------------
+# Name: status_format 
+# -------------------------------------------------------------------------
+# Controls the format of the status line displayed in the “index” menu.
+# This string is similar to $index_format, but has its own set of
+# printf(3)-like sequences:
+# 
+# %b     Number of mailboxes with new mail *
+# %d     Number of deleted messages *
+# %f     The full pathname of the current mailbox
+# %F     Number of flagged messages *
+# %h     Local hostname
+# %l     Size (in bytes) of the current mailbox *
+# %L     Size (in bytes) of the messages shown (i.e., which match the current limit) *
+# %m     The number of messages in the mailbox *
+# %M     The number of messages shown (i.e., which match the current limit) *
+# %n     Number of new messages in the mailbox *
+# %o     Number of old unread messages *
+# %p     Number of postponed messages *
+# %P     Percentage of the way through the index
+# %r     Modified/read-only/won't-write/attach-message indicator, According to $status_chars
+# %R     Number of read messages *
+# %s     Current sorting mode ($sort)
+# %S     Current aux sorting method ($sort_aux)
+# %t     Number of tagged messages *
+# %u     Number of unread messages *
+# %v     NeoMutt version string
+# %V     Currently active limit pattern, if any *
+# %>X    Right justify the rest of the string and pad with “X”
+# %|X    Pad to the end of the line with “X”
+# %*X    Soft-fill with character “X” as pad
+# 
+# For an explanation of “soft-fill”, see the $index_format documentation.
+# 
+# * = can be optionally printed if nonzero
+# 
+# Some  of  the above sequences can be used to optionally print a string if
+# their value is nonzero.  For example, you may only want to see the number
+# of flagged messages if such messages exist, # since zero is not
+# particularly meaningful.  To optionally print a string based upon one of
+# the above sequences, the following construct is used:
+#
+# %?<sequence_char>?<optional_string>?
+#
+#
+# where sequence_char is a character from the table above, and
+# optional_string is the string you would like printed if sequence_char is
+#nonzero.  optional_string may contain other sequences  as well as normal
+# text, but you may not nest optional strings.
+#
+# 
+# Here is an example illustrating how to optionally print the number of new messages in a mailbox:
+# 
+# %?n?%n new messages.?
+# 
+# You can also switch between two strings using the following construct:
+# 
+# %?<sequence_char>?<if_string>&<else_string>?
+# 
+# If the value of sequence_char is non-zero, if_string will be expanded, otherwise else_string will be expanded.
+# 
+# You can force the result of any printf(3)-like sequence to be lowercase
+# by prefixing the sequence character with an underscore (“_”) sign.  For
+# example, if you want to display the local host‐ # name in lowercase, you
+# would use: “%_h”. If you prefix the sequence character with a colon
+# (“:”) character, NeoMutt will replace any dots in the expansion by
+# underscores. This might # be helpful with IMAP folders that don't like
+# dots in folder names.  
+# -------------------------------------------------------------------------
+
+# set status_format = "-%r-NeoMutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+ 
+
+# -------------------------------------------------------------------------
+# Name alias_format
+# -------------------------------------------------------------------------
+# Specifies the format of the data displayed for the ``alias'' menu.  The
+# following printf(3)-style sequences are available:
+# %a      Alias name
+# %f      Flags - currently, a ``d'' for an alias marked for deletion
+# %n      Index number
+# %r      Address which alias expands to
+# %t      Character which indicates if the alias is tagged for inclusion
+# -------------------------------------------------------------------------
+
+# set alias_format="%4n %2f %t %-10a   %r"
+# -------------------------------------------------------------------------
+# Name: reverse_alias
+# -------------------------------------------------------------------------
+# This variable controls whether or not NeoMutt will display the ``personal''
+# name from your aliases in the index menu if it finds an alias that
+# matches the message's sender.  For example, if you have the following
+# alias:
+# alias juser abd30425@somewhere.net (Joe User)
+# 
+# and then you receive mail which contains the following header:
+# From: abd30425@somewhere.net
+# 
+# It would be displayed in the index menu as ``Joe User'' instead of
+# ``abd30425@somewhere.net.''  This is useful when the person's e-mail
+# address is not human friendly.
+# -------------------------------------------------------------------------
+
+# set reverse_alias=no
+# -------------------------------------------------------------------------
+# Name: sort_alias
+# -------------------------------------------------------------------------
+# Specifies how the entries in the ``alias'' menu are sorted.  The
+# following are legal values:
+# - address (sort alphabetically by email address)
+# - alias (sort alphabetically by alias name)
+# - unsorted (leave in order specified in .neomuttrc)
+# -------------------------------------------------------------------------
+
+# set sort_alias=alias
+# -------------------------------------------------------------------------
+# Name: color
+# -------------------------------------------------------------------------
+# color object foreground background
+# color { header | body } foreground background regex
+# color index-object foreground background pattern
+# color compose composeobject foreground background
+#
+# If your terminal supports color, these commands can be used to assign
+# foreground/background combinations to certain objects. The currently
+# defined  objects  are: attach_headers,  attachment, body,  bold,  error,
+# hdrdefault, header, index, index_author, index_collapsed, index_date,
+# index_flags, index_label, index_number, index_size, index_subject,
+# index_tag, index_tags, indicator, markers, message, normal, progress,
+# prompt, quoted, quotedN, search, signature, status, tilde, tree,
+# underline.
+#
+# If the sidebar is enabled the following objects are also valid:
+# sidebar_divider, sidebar_flagged, sidebar_highlight, sidebar_indicator,
+# sidebar_new, sidebar_ordinary, sidebar_spoolfile. 
+#
+# The body and header objects allow you to restrict the colorization to a
+# regular expression.  The index-object permits you to select colored
+# messages by pattern.  
+#
+# The header and body match regex in the header/body of a message,
+# index-object can match pattern in the message index.  Note that IMAP
+# server-side searches (=b, =B, =h) are not  supported  for color index
+# patterns.
+#
+# Valid colors include: default, black, red, green, yellow, blue, magenta,
+# cyan, white, colorN.
+#
+# The  uncolor command can be applied to the index, header and body objects
+# only. It removes entries from the list. You must specify the same pattern
+# specified in the color command for it to be removed. The pattern “*” is a
+# special token which means to clear the color list of all entries.
+#
+# For further information on colorization, please consult the NeoMutt
+# manual.
+# -------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+# Name: sidebar_whitelist / unsidebar_whitelist 
+# -------------------------------------------------------------------------
+# The sidebar_whitelist command specifies mailboxes that will always be
+# displayed in the sidebar, even if $sidebar_new_mail_only is set and the
+# mailbox does not contain new mail.
+# The unsidebar_whitelist command is used to remove a mailbox from the list
+# of whitelisted mailboxes. Use “unsidebar_whitelist *” to remove all
+# mailboxes.
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_component_depth
+# -------------------------------------------------------------------------
+# By default the sidebar will show the mailbox's path, relative to the
+# $folder variable. This specifies the number of parent directories to hide
+# from display in the sidebar. For example:  If  a maildir is normally
+# displayed in the sidebar as dir1/dir2/dir3/maildir, setting
+# sidebar_component_depth=2 will display it as dir3/maildir, having
+# truncated the 2 highest directories.
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_delim_chars
+# -------------------------------------------------------------------------
+# This contains the list of characters which you would like to treat as
+# folder separators for displaying paths in the sidebar.  Local mail is
+# often arranged in directories: `dir1/dir2/mailbox'.  
+#	set sidebar_delim_chars='/' 
+# IMAP mailboxes are often named: `folder1.folder2.mailbox'.  
+# -------------------------------------------------------------------------
+#	set sidebar_delim_chars='.'
+# -------------------------------------------------------------------------
+# Name: sidebar_folder_indent
+# -------------------------------------------------------------------------
+# Set this to indent mailboxes in the sidebar.
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_divider_char
+# -------------------------------------------------------------------------
+# This specifies the characters to be drawn between the sidebar (when
+# visible) and the other NeoMutt panels. ASCII and Unicode line-drawing
+# characters are supported.
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_format
+# -------------------------------------------------------------------------
+# This variable allows you to customize the sidebar display. This string is
+# similar to $index_format, but has its own set of printf(3)-like
+# sequences:
+#              %B     Name of the mailbox
+#              %S     * Size of mailbox (total number of messages)
+#              %N     * Number of unread messages in the mailbox
+#              %n     N if mailbox has new mail, blank otherwise
+#              %F     * Number of Flagged messages in the mailbox
+#              %!     “!” : one flagged message; “!!” : two flagged messages; “n!” : n flagged messages (for n > 2).  Otherwise prints nothing.
+#              %d     * @ Number of deleted messages
+#              %L     * @ Number of messages after limiting
+#              %t     * @ Number of tagged messages
+#              %>X    right justify the rest of the string and pad with “X”
+#              %|X    pad to the end of the line with “X”
+#              %*X    soft-fill with character “X” as pad
+#             * = Can be optionally printed if nonzero @ = Only applicable to the current folder
+#
+# In order to use %S, %N, %F, and %!, $mail_check_stats must be set.  When
+# thus set, a suggested value for this option is "%B%?F? [%F]?%*
+# %?N?%N/?%S".
+
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+# -------------------------------------------------------------------------
+# Name: sidebar_indent_string
+# -------------------------------------------------------------------------
+# This specifies the string that is used to indent mailboxes in the
+# sidebar.  It defaults to two spaces. 
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_new_mail_only
+# -------------------------------------------------------------------------
+# When set, the sidebar will only display mailboxes containing new, or
+# flagged, mail.
+# -------------------------------------------------------------------------
+# Name: sidebar_next_new_wrap
+# -------------------------------------------------------------------------
+# When  set,  the <sidebar-next-new> command will not stop and the end of
+# the list of mailboxes, but wrap around to the beginning. The
+# <sidebar-prev-new> command is similarly affected, wrapping around to the
+# end of the list.
+# -------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------
+# Name: sidebar_on_right
+# -------------------------------------------------------------------------
+# When set, the sidebar will appear on the right-hand side of the screen.
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_short_path
+# -------------------------------------------------------------------------
+# By default the sidebar will show the mailbox's path, relative to the
+# $folder variable. Setting sidebar_shortpath=yes will shorten the names
+# relative to the previous name. Here's an example:
+#
+#              shortpath=no
+#                     shortpath=yes shortpath=yes, folderindent=yes, indentstr=".."
+#              fruit  fruit fruit
+#              fruit.apple
+#                     apple ..apple
+#              fruit.banana
+#                     banana ..banana
+#              fruit.cherry
+#                     cherry ..cherry
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_sort_method
+# -------------------------------------------------------------------------
+# Specifies how to sort entries in the file browser.  By default, the
+# entries are sorted alphabetically.  
+#
+# Valid values:
+#              ‐ alpha (alphabetically)
+#              ‐ count (all message count)
+#              ‐ flagged (flagged message count)
+#              ‐ name (alphabetically)
+#              ‐ new (unread message count)
+#              ‐ path (alphabetically)
+#              ‐ unread (unread message count)
+#              ‐ unsorted
+#
+# You may optionally use the “reverse-” prefix to specify reverse sorting
+# order (example: “set sort_browser=reverse-date”).
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Name: sidebar_visible
+# -------------------------------------------------------------------------
+# This specifies whether or not to show sidebar. The sidebar shows a list
+# of all your mailboxes.
+# -------------------------------------------------------------------------
+#
+# set sidebar_visible = yes
+# -------------------------------------------------------------------------
+# Name: sidebar_width
+# -------------------------------------------------------------------------
+# This controls the width of the sidebar.  It is measured in screen
+# columns.  For example: sidebar_width=20 could display 20 ASCII
+# characters, or 10 Chinese characters.
+# -------------------------------------------------------------------------
+#
+# set sidebar_width = 50
+
+##########################################################################
+#   06 - SMTP
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: smtp_url 
+# -------------------------------------------------------------------------
+# Defines the SMTP smarthost where sent messages should relayed for
+# delivery. This should take the form of an SMTP URL, e.g.:
+# smtp[s]://[user[:pass]@]host[:port]
+# where “[...]” denotes an optional part.  Setting this variable overrides
+# the value of the $sendmail variable.
+
+# set smtp_url = ""
+# -------------------------------------------------------------------------
+# Name: smtp_pass
+# -------------------------------------------------------------------------
+# Specifies  the  password  for  your  SMTP account.  If unset, NeoMutt
+# will prompt you for your password when you first send mail via SMTP.  See
+# $smtp_url to configure NeoMutt to send mail via SMTP.
+#
+# Warning: you should only use this option when you are on a fairly secure
+# machine, because the superuser can read your neomuttrc even if you are
+# the only one who can read the file.
+
+# set smtp_pass = "" 
+# -------------------------------------------------------------------------
+# Name: smtp_authenticators
+# -------------------------------------------------------------------------
+# This  is  a  colon-delimited  list of authentication methods NeoMutt may
+# attempt to use to log in to an SMTP server, in the order NeoMutt should
+# try them.  Authentication methods are any SASL mechanism, e.g. “plain”,
+# “digest-md5”, “gssapi” or “cram-md5”.  This option is case-insensitive.
+# If it is “unset” (the default)  NeoMutt  will  try  all  available
+# methods,  in  order  from most-secure to least-secure. Support for the
+# “plain” mechanism is bundled; other mechanisms are provided by an
+# external SASL library (look for +USE_SASL in the output of neomutt -v). 
+#
+# Example:
+# set smtp_authenticators="digest-md5:cram-md5"
+##########################################################################
+#   07 - IMAP
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: imap_user 
+# -------------------------------------------------------------------------
+# The name of the user whose mail you intend to access on the IMAP server.
+# This variable defaults to your user name on the local machine.
+
+# set imap_user = "imapuser"
+
+# -------------------------------------------------------------------------
+# Name: imap_pass 
+# -------------------------------------------------------------------------
+# Specifies the password for your IMAP account.  If unset, NeoMutt will
+# prompt you for your password when you invoke the <imap-fetch-mail>
+# function or try to open an IMAP folder. 
+# 
+# Warning: you should only use this option when you are on a fairly secure
+# machine, because the superuser can read your neomuttrc even if you are
+# the only one who can read the file.
+
+# set imap_pass = "imappasswd"
+
+##########################################################################
+#   08 - POP3
+##########################################################################
+##########################################################################
+#   09 - Notmuch
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: nm_default_uri 
+# -------------------------------------------------------------------------
+# This variable specifies the default Notmuch database in format
+# notmuch://<absolute path>. 
+
+# set nm_default_uri = "notmuch:///home/user/.mail"
+
+# -------------------------------------------------------------------------
+# Name: virtual-mailboxes
+# -------------------------------------------------------------------------
+
+# virtual-mailboxes "Eingang" "notmuch://?query=tag:inbox"
+# virtual-mailboxes "Linux" "notmuch://?query=tag:linux"
+# virtual-mailboxes "E-Mails von heute" "notmuch://?query=date:today"
+# virtual-mailboxes "E-Mails von gestern" "notmuch://?query=date:yesterday"
+# virtual-mailboxes "E-Mails von dieser Woche" "notmuch://?query=date:week.."
+# virtual-mailboxes "E-Mails von diesem Monat" "notmuch://?query=date:month.."
+
+# -------------------------------------------------------------------------
+# Name: nm_record 
+# -------------------------------------------------------------------------
+# This variable specifies if the NeoMutt record should indexed by notmuch. 
+# 
+
+# set nm_record = no 
+# -------------------------------------------------------------------------
+# Name: nm_record_tags 
+# -------------------------------------------------------------------------
+# This variable specifies the default tags applied to messages stored to
+# the NeoMutt record.  When set to 0 this variable disable the window
+# feature.
+
+# set nm_record_tags = "-inbox,sent,local"
+# -------------------------------------------------------------------------
+# Name: virtual_spoolfile 
+# -------------------------------------------------------------------------
+# When set, NeoMutt will use the first defined virtual mailbox (see
+# virtual-mailboxes) as a spool file.
+# -------------------------------------------------------------------------
+
+# set virtual_spoolfile = no
+
+
+##########################################################################
+#   10 - Hooks
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: folder-hook 
+# -------------------------------------------------------------------------
+# When NeoMutt enters a folder which matches regex (or, when regex is
+# preceded by an exclamation mark, does not match regex), the given command
+# is executed.
+# When several folder-hooks match a given mail folder, they are executed in
+# the order given in the configuration file.
+
+# -------------------------------------------------------------------------
+# Name: mbox-hook
+# -------------------------------------------------------------------------
+# When NeoMutt changes to a mail folder which matches regex, mailbox will
+# be used as the “mbox” folder, i.e. read messages will be moved to that
+# folder when the mail folder is left.
+# Note that execution of mbox-hooks is dependent on the $move configuration
+# variable. If set to “no” (the default), mbox-hooks will not be executed.
+# The first matching mbox-hook applies.
+
+# -------------------------------------------------------------------------
+# Name: message-hook
+# -------------------------------------------------------------------------
+# Before NeoMutt displays (or formats for replying or forwarding) a message
+# which matches the given pattern (or, when it is preceded by an
+# exclamation mark, does not  match  the  pattern),  the given command is
+# executed.  When multiple message-hooks match, they are executed in the
+# order in which they occur in the configuration file.
+
+
+# -------------------------------------------------------------------------
+# Name: reply-hook 
+# -------------------------------------------------------------------------
+#  These  commands  can be used to execute arbitrary configuration commands
+#  based upon recipients of the message. pattern is used to match the
+#  message, see section “Message Matching in Hooks” in manual for details.
+#  command is executed when pattern matches.
+#
+# reply-hook is matched against the message you are replying to, instead of
+# the message you are sending. send-hook is matched against all messages,
+# both new and replies. Note,  reply-hooks  are matched before the
+# send-hook, regardless of the order specified in the user's configuration
+# file.
+
+# -------------------------------------------------------------------------
+# Name: send-hook 
+# -------------------------------------------------------------------------
+# These  commands  can be used to execute arbitrary configuration commands
+# based upon recipients of the message. pattern is used to match the
+# message, see section “Message Matching in Hooks” in manual for details.
+# command is executed when pattern matches.
+#
+# reply-hook is matched against the message you are replying to, instead of the
+# message you are sending. send-hook is matched against all messages, both new
+# and replies. Note,  reply-hooks  are matched before the send-hook, regardless
+# of the order specified in the user's configuration file.
+#
+# send2-hook  is  matched  every  time a message is changed, either by editing
+# it, or by using the compose menu to change its recipients or subject.
+# send2-hook is executed after send-hook, and can, e.g., be used to set
+# parameters such as the $sendmail variable depending on the message's sender
+# address. Note, send-hooks are only executed once after getting the initial
+# list of recip‐ ients.
+
+
+# -------------------------------------------------------------------------
+# Name: send-hook 
+# -------------------------------------------------------------------------
+# These  commands  can be used to execute arbitrary configuration commands
+# based upon recipients of the message. pattern is used to match the
+# message, see section “Message Matching in Hooks” in manual for details.
+# command is executed when pattern matches.
+#
+# reply-hook is matched against the message you are replying to, instead of the
+# message you are sending. send-hook is matched against all messages, both new
+# and replies. Note,  reply-hooks  are matched before the send-hook, regardless
+# of the order specified in the user's configuration file.
+#
+# send2-hook  is  matched  every  time a message is changed, either by editing
+# it, or by using the compose menu to change its recipients or subject.
+# send2-hook is executed after send-hook, and can, e.g., be used to set
+# parameters such as the $sendmail variable depending on the message's sender
+# address. Note, send-hooks are only executed once after getting the initial
+# list of recip‐ ients.
+
+
+# -------------------------------------------------------------------------
+# Name: crypt-hook
+# -------------------------------------------------------------------------
+# The crypt-hook command provides a method by which you can specify the ID of
+# the public key to be used when encrypting messages to a certain recipient.
+# The meaning of  keyid  is  to  be  taken broadly: This can be a different
+# email address, a numerical keyid, or even just an arbitrary search string.
+# You may use multiple crypt-hooks with the same regex; multiple matching
+# crypt-hooks result in the use of multiple keyids for a recipient.
+# -------------------------------------------------------------------------
 
