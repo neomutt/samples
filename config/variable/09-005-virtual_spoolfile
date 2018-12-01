@@ -1,0 +1,10 @@
+# -------------------------------------------------------------------------
+# Name: virtual_spoolfile 
+# -------------------------------------------------------------------------
+# When set, NeoMutt will use the first defined virtual mailbox (see
+# virtual-mailboxes) as a spool file.
+# -------------------------------------------------------------------------
+
+# set virtual_spoolfile = no
+
+
