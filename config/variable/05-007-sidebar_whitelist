@@ -1,0 +1,10 @@
+# -------------------------------------------------------------------------
+# Name: sidebar_whitelist / unsidebar_whitelist 
+# -------------------------------------------------------------------------
+# The sidebar_whitelist command specifies mailboxes that will always be
+# displayed in the sidebar, even if $sidebar_new_mail_only is set and the
+# mailbox does not contain new mail.
+# The unsidebar_whitelist command is used to remove a mailbox from the list
+# of whitelisted mailboxes. Use “unsidebar_whitelist *” to remove all
+# mailboxes.
+# -------------------------------------------------------------------------

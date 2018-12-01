@@ -1,0 +1,10 @@
+# -------------------------------------------------------------------------
+# Name: sidebar_width
+# -------------------------------------------------------------------------
+# This controls the width of the sidebar.  It is measured in screen
+# columns.  For example: sidebar_width=20 could display 20 ASCII
+# characters, or 10 Chinese characters.
+# -------------------------------------------------------------------------
+#
+# set sidebar_width = 50
+

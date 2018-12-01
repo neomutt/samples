@@ -1,0 +1,5 @@
+# -------------------------------------------------------------------------
+# Name: sidebar_new_mail_only
+# -------------------------------------------------------------------------
+# When set, the sidebar will only display mailboxes containing new, or
+# flagged, mail.

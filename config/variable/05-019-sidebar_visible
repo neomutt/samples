@@ -1,0 +1,8 @@
+# -------------------------------------------------------------------------
+# Name: sidebar_visible
+# -------------------------------------------------------------------------
+# This specifies whether or not to show sidebar. The sidebar shows a list
+# of all your mailboxes.
+# -------------------------------------------------------------------------
+#
+# set sidebar_visible = yes
