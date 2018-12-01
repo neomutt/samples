@@ -1,0 +1,9 @@
+# -------------------------------------------------------------------------
+# Name: folder-hook 
+# -------------------------------------------------------------------------
+# When NeoMutt enters a folder which matches regex (or, when regex is
+# preceded by an exclamation mark, does not match regex), the given command
+# is executed.
+# When several folder-hooks match a given mail folder, they are executed in
+# the order given in the configuration file.
+

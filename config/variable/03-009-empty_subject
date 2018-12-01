@@ -1,0 +1,9 @@
+# -------------------------------------------------------------------------
+# Name: empty_subject 
+# -------------------------------------------------------------------------
+# This variable specifies the subject to be used when replying to an email
+# with an empty subject.  It defaults to "Re: your mail".
+# -------------------------------------------------------------------------
+
+# set empty_subject = "Re: your mail"
+

@@ -1,0 +1,21 @@
+# -------------------------------------------------------------------------
+# Name: send-hook 
+# -------------------------------------------------------------------------
+# These  commands  can be used to execute arbitrary configuration commands
+# based upon recipients of the message. pattern is used to match the
+# message, see section “Message Matching in Hooks” in manual for details.
+# command is executed when pattern matches.
+#
+# reply-hook is matched against the message you are replying to, instead of the
+# message you are sending. send-hook is matched against all messages, both new
+# and replies. Note,  reply-hooks  are matched before the send-hook, regardless
+# of the order specified in the user's configuration file.
+#
+# send2-hook  is  matched  every  time a message is changed, either by editing
+# it, or by using the compose menu to change its recipients or subject.
+# send2-hook is executed after send-hook, and can, e.g., be used to set
+# parameters such as the $sendmail variable depending on the message's sender
+# address. Note, send-hooks are only executed once after getting the initial
+# list of recip‐ ients.
+
+

@@ -1,0 +1,10 @@
+# -------------------------------------------------------------------------
+# Name: mbox-hook
+# -------------------------------------------------------------------------
+# When NeoMutt changes to a mail folder which matches regex, mailbox will
+# be used as the “mbox” folder, i.e. read messages will be moved to that
+# folder when the mail folder is left.
+# Note that execution of mbox-hooks is dependent on the $move configuration
+# variable. If set to “no” (the default), mbox-hooks will not be executed.
+# The first matching mbox-hook applies.
+

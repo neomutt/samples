@@ -1,0 +1,14 @@
+# -------------------------------------------------------------------------
+# Name: reply-hook 
+# -------------------------------------------------------------------------
+#  These  commands  can be used to execute arbitrary configuration commands
+#  based upon recipients of the message. pattern is used to match the
+#  message, see section “Message Matching in Hooks” in manual for details.
+#  command is executed when pattern matches.
+#
+# reply-hook is matched against the message you are replying to, instead of
+# the message you are sending. send-hook is matched against all messages,
+# both new and replies. Note,  reply-hooks  are matched before the
+# send-hook, regardless of the order specified in the user's configuration
+# file.
+

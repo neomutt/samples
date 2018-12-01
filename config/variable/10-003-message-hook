@@ -1,0 +1,10 @@
+# -------------------------------------------------------------------------
+# Name: message-hook
+# -------------------------------------------------------------------------
+# Before NeoMutt displays (or formats for replying or forwarding) a message
+# which matches the given pattern (or, when it is preceded by an
+# exclamation mark, does not  match  the  pattern),  the given command is
+# executed.  When multiple message-hooks match, they are executed in the
+# order in which they occur in the configuration file.
+
+
