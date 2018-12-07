@@ -1,0 +1,72 @@
+##########################################################################
+#  IMAP - Neomutt configuration
+##########################################################################
+# -------------------------------------------------------------------------
+# Name: realname 
+# -------------------------------------------------------------------------
+# This variable specifies what “real” or “personal” name should be used
+# when sending mes‐ sages.  If not specified, then the user's “real name”
+# will  be  read  from  /etc/passwd.   This option will not be used, if
+# “$from” is set.
+# -------------------------------------------------------------------------
+
+# set realname = "Firstname Lastname"
+
+
+# -------------------------------------------------------------------------
+# Name: from
+# -------------------------------------------------------------------------
+# When set, this variable contains a default “from” address.  It can be
+# overridden  using “my_hdr” (including from a “send-hook”) and
+# $reverse_name.  This variable is ignored if $use_from is unset.  If not
+# specified, then it may be read from the environment variable $EMAIL.
+# -------------------------------------------------------------------------
+
+# set from="mailbox@domain.tld"
+# -------------------------------------------------------------------------
+# Name: spoolfile
+# -------------------------------------------------------------------------
+# If your spool mailbox is in a non-default place where NeoMutt cannot find
+# it,  you  can specify its location with this variable.  If not specified,
+# then the environment variables $MAIL and $MAILDIR will be checked.  
+# -------------------------------------------------------------------------
+
+# set spoolfile = ""
+# set spoolfile="imaps://domain.tld/"
+# -------------------------------------------------------------------------
+# Name: mailboxes
+# -------------------------------------------------------------------------
+# The mailboxes  specifies  folders which can receive mail and which will
+# be checked for new messages. When changing folders, pressing space will
+# cycle through folders with new mail.  The named-mailboxes is an
+# alternative to mailboxes that allows adding a description for a mailbox.
+# NeoMutt can be configured to display the description instead of the
+# mailbox path.  The unmailboxes  command  is used to remove a file name
+# from the list of folders which can receive mail.  If “*” is specified as
+# the file name, the list is emptied.
+# -------------------------------------------------------------------------
+
+# unmailboxes *
+# mailboxes +Drafts +Sent +Spam
+mailboxes $spoolfile
+# -------------------------------------------------------------------------
+# Name: imap_user 
+# -------------------------------------------------------------------------
+# The name of the user whose mail you intend to access on the IMAP server.
+# This variable defaults to your user name on the local machine.
+
+# set imap_user = "imapuser"
+
+# -------------------------------------------------------------------------
+# Name: imap_pass 
+# -------------------------------------------------------------------------
+# Specifies the password for your IMAP account.  If unset, NeoMutt will
+# prompt you for your password when you invoke the <imap-fetch-mail>
+# function or try to open an IMAP folder. 
+# 
+# Warning: you should only use this option when you are on a fairly secure
+# machine, because the superuser can read your neomuttrc even if you are
+# the only one who can read the file.
+
+# set imap_pass = "imappasswd"
+
