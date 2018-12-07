@@ -1,5 +1,7 @@
 # neomutt samples
 Examples of neomutt's configuration for developer and users.
+You can find some more information on the samples wiki: https://github.com/neomutt/samples/wiki
+
 
 ## The samples
 
