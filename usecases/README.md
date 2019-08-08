@@ -10,3 +10,6 @@ He use getmail + procmail + notmuch.
 
 ## Bart
 Bart is using isync.
+
+## Homer
+Homer is using two IMAP Accounts.
