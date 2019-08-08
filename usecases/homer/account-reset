@@ -1,0 +1,17 @@
+# Reset Account Settings
+unset realname
+unset from     
+unset hostname 
+unset folder 
+unset spoolfile 
+unset imap_user 
+unset imap_pass 
+unset imap_login 
+unset pgp_sign_as
+unset smtp_url 
+unset trash    
+unset postponed
+unset record 
+
+unmailboxes *
+

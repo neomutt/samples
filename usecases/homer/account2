@@ -1,0 +1,29 @@
+source ~/.neomutt/homer/account-reset
+
+set realname="Firstname2 Lastname2"
+
+set from="mailbox2@domain.tld"
+set hostname="domain.tld"
+
+set imap_user = "mailbox2@domain.tld"
+set imap_pass = "passwd"
+
+set folder = "imaps://imap.provider.de/"
+set spoolfile = "$folder"
+
+set pgp_sign_as=0x98765432
+
+set smtp_url = "smtp[s]://[user[:pass]@]host[:port]"
+
+set trash     = "+Trash"
+set postponed = "+Drafts"
+set record    = "+Sent Items"
+
+set imap_check_subscribed = yes
+
+mailboxes     = $spoolfile $postponed =Archive
+
+# set header_cache     = "~/.neomutt/cache/header" 
+# set message_cachedir = "~/.neomutt/cache/message"
+
+color status     default    green
