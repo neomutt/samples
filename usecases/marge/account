@@ -1,0 +1,54 @@
+# -------------------------------------------------------------------------
+# Name: realname 
+# -------------------------------------------------------------------------
+# This variable specifies what “real” or “personal” name should be used
+# when sending mes‐ sages.  If not specified, then the user's “real name”
+# will  be  read  from  /etc/passwd.   This option will not be used, if
+# “$from” is set.
+# -------------------------------------------------------------------------
+
+set realname="Firstname Lastname"
+
+# -------------------------------------------------------------------------
+# Name: from
+# -------------------------------------------------------------------------
+# When set, this variable contains a default “from” address.  It can be
+# overridden  using “my_hdr” (including from a “send-hook”) and
+# $reverse_name.  This variable is ignored if $use_from is unset.  If not
+# specified, then it may be read from the environment variable $EMAIL.
+# -------------------------------------------------------------------------
+
+set from="mailbox@domain.tld"
+set hostname="domain.tld"
+
+set folder = "imaps://imap.provider.tld/"
+
+# -------------------------------------------------------------------------
+# Name: spoolfile
+# -------------------------------------------------------------------------
+# If your spool mailbox is in a non-default place where NeoMutt cannot find
+# it,  you  can specify its location with this variable.  If not specified,
+# then the environment variables $MAIL and $MAILDIR will be checked.
+# -------------------------------------------------------------------------
+
+set spoolfile = "$folder"
+
+set imap_user = "mailbox@domain.tld"
+set imap_pass = "passwd"
+
+set pgp_sign_as=0x12345678
+
+set smtp_url = "smtp[s]://[user[:pass]@]host[:port]"
+
+set trash     = "+Trash"
+set postponed = "+Drafts"
+set record    = "+Sent Items"
+
+set imap_check_subscribed = yes
+
+mailboxes     = $spoolfile $postponed =Archive
+
+# set header_cache     = "~/.neomutt/cache/header" 
+# set message_cachedir = "~/.neomutt/cache/message"
+
+

@@ -1,0 +1,48 @@
+set mbox_type=Maildir
+
+set tmpdir=~/.tmp
+set postponed="+Drafts"
+set record="+Sent"
+set trash="+Trash"
+
+set editor="vim -c 'set spell spelllang=de,en' -c 'startinsert' -c 'set tw=70 et' -c 'set wrap' '+/^$'" 
+set edit_headers
+set ispell="aspell -e -c"
+set attribution="Am %{%A}, den %{%x} um %{%X} %{%Z} schrieb %a:"
+set forward_format="Fwd: %s"
+
+set crypt_use_gpgme=yes
+set crypt_autosign=yes
+set crypt_autopgp=yes
+
+ignore *
+
+unignore From Subject To Cc Bcc Reply-To User-Agent Date X-Mailer X-Face 
+unignore List-Id
+unignore Organization
+unignore Folder
+unignore Tags
+unignore X-Spam-Level 
+unignore X-Envelope-To
+unignore Sender 
+
+unhdr_order *
+hdr_order From: Subject:  To: Cc: Bcc: Reply-To: List-Id: Organization: User-Agent: Sender:
+
+set charset="utf-8"
+set send_charset="utf-8:iso-8859-15:us-ascii"
+set allow_8bit
+
+set mail_check_stats
+bind index,pager B sidebar-toggle-visible
+set sidebar_visible = yes
+set smileys="(>From )|(:[-^]?[][)(><}{|/DP])"
+set sort=threads
+set sort_aux=date-sent
+set date_format="%a, %d. %b %H:%M"
+set folder_format="%2C %8s %d %t %N %f"
+set pager_index_lines=10
+
+source ~/.neomutt/alias
+source ~/.neomutt/account
+
