@@ -1,24 +1,48 @@
-set mbox_type=Maildir
+# =============================================================================
+# This file is a sample configuration file to use neomutt with IMAP
+# See man 5 neomuttrc for more information about neomutt configuration
+# =============================================================================
 
-set tmpdir=~/.tmp
-set postponed="+Drafts"
-set record="+Sent"
-set trash="+Trash"
+# -----------------------------------------------------------------------------
+# Setup of mbox type and system folders
+# -----------------------------------------------------------------------------
+set mbox_type       = Maildir
+set tmpdir          = ~/.tmp
+set header_cache    = "~/.cache/neomutt/hcache/marge"
 
+# -----------------------------------------------------------------------------
+# Setup mailboxes
+# -----------------------------------------------------------------------------
+set postponed = "+Drafts"
+set record    = "+Sent"
+set trash     = "+Trash"
+
+# -----------------------------------------------------------------------------
+# Composing
+# -----------------------------------------------------------------------------
 set editor="vim -c 'set spell spelllang=de,en' -c 'startinsert' -c 'set tw=70 et' -c 'set wrap' '+/^$'" 
 set edit_headers
 set ispell="aspell -e -c"
 set attribution="Am %{%A}, den %{%x} um %{%X} %{%Z} schrieb %a:"
 set forward_format="Fwd: %s"
 
+set charset="utf-8"
+set send_charset="utf-8:iso-8859-15:us-ascii"
+set allow_8bit
+
+# -----------------------------------------------------------------------------
+# crypto setup
+# -----------------------------------------------------------------------------
 set crypt_use_gpgme=yes
 set crypt_autosign=yes
 set crypt_autopgp=yes
 
-
+# -----------------------------------------------------------------------------
+# Display messages 
+# -----------------------------------------------------------------------------
 ignore *
-
 unignore From Subject To Cc Bcc Reply-To User-Agent Date X-Mailer X-Face 
+unignore Jabber-ID
 unignore List-Id
 unignore Organization
 unignore Folder
@@ -28,11 +52,11 @@ unignore X-Envelope-To
 unignore Sender 
 
 unhdr_order *
-hdr_order From: Subject:  To: Cc: Bcc: Reply-To: List-Id: Organization: User-Agent: Sender:
+hdr_order From: Subject: To: Cc: Bcc: Reply-To: List-Id: Organization: User-Agent: Sender: Jabber-ID:
 
-set charset="utf-8"
-set send_charset="utf-8:iso-8859-15:us-ascii"
-set allow_8bit
+# -----------------------------------------------------------------------------
+# Look and Feel 
+# -----------------------------------------------------------------------------
 
 set mail_check_stats
 bind index,pager B sidebar-toggle-visible
@@ -48,7 +72,6 @@ set pager_index_lines=10
 # -----------------------------------------------------------------------------
 # Spam - cache header and request the SPAM Headers via IMAP
 # -----------------------------------------------------------------------------
-set header_cache	= "~/.cache/neomutt/hcache/marge"
 set imap_headers	= "X-SPAM-SCORE X-SPAM-REPORT"
 
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\+\+.*).*' " S"
@@ -59,7 +82,14 @@ spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\).*'          " 7"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\).*'            " 6"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\).*'              " 5"
 
+# -----------------------------------------------------------------------------
+# Colors 
+# -----------------------------------------------------------------------------
+color index yellow    default    '~l'
+color index default   red        '~F'
 
+# -----------------------------------------------------------------------------
 source ~/.neomutt/alias
 source ~/.neomutt/account
+# -----------------------------------------------------------------------------
 
