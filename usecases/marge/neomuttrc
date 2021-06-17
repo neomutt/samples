@@ -15,6 +15,7 @@ set crypt_use_gpgme=yes
 set crypt_autosign=yes
 set crypt_autopgp=yes
 
+
 ignore *
 
 unignore From Subject To Cc Bcc Reply-To User-Agent Date X-Mailer X-Face 
@@ -41,7 +42,23 @@ set sort=threads
 set sort_aux=date-sent
 set date_format="%a, %d. %b %H:%M"
 set folder_format="%2C %8s %d %t %N %f"
+set index_format = "%2H %4C %Z %d %-15.15L (%?l?%4l&%4c?) %s"
 set pager_index_lines=10
+
+# -----------------------------------------------------------------------------
+# Spam - cache header and request the SPAM Headers via IMAP
+# -----------------------------------------------------------------------------
+set header_cache	= "~/.cache/neomutt/hcache/marge"
+set imap_headers	= "X-SPAM-SCORE X-SPAM-REPORT"
+
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\+\+.*).*' " S"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\+\).*'    "10"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\).*'      " 9"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\).*'        " 8"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\).*'          " 7"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\).*'            " 6"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\).*'              " 5"
+
 
 source ~/.neomutt/alias
 source ~/.neomutt/account
