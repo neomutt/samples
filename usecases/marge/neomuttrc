@@ -13,6 +13,7 @@ set header_cache    = "~/.cache/neomutt/hcache/marge"
 # -----------------------------------------------------------------------------
 # Setup mailboxes
 # -----------------------------------------------------------------------------
+set imap_check_subscribed
 set postponed = "+Drafts"
 set record    = "+Sent"
 set trash     = "+Trash"
@@ -66,15 +67,23 @@ set sort=threads
 set sort_aux=date-sent
 set date_format="%a, %d. %b %H:%M"
 set folder_format="%2C %8s %d %t %N %f"
-set index_format = "%2H %4C %Z %d %-15.15L (%?l?%4l&%4c?) %s"
-set pager_index_lines=10
+set index_format = "%3H %4C %Z [%2N] %d %-15.15L (%?l?%4l&%4c?) %s"
+set pager_index_lines=5
+
+# -----------------------------------------------------------------------------
+# Score
+# -----------------------------------------------------------------------------
+
+score ~p      30
+score ~l     -10
+score '~H S' -50
 
 # -----------------------------------------------------------------------------
 # Spam - cache header and request the SPAM Headers via IMAP
 # -----------------------------------------------------------------------------
 set imap_headers	= "X-SPAM-SCORE X-SPAM-REPORT"
 
-spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\+\+.*).*' " S"
+spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\+\+.*).*' "+"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\+\).*'    "10"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\+\).*'      " 9"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\+\).*'        " 8"
@@ -82,11 +91,26 @@ spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\+\).*'          " 7"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\+\).*'            " 6"
 spam 'X-Spam-Score:.*\(\+\+\+\+\+\).*'              " 5"
 
+spam 'X-Spam-Status:\ Yes'                         "S"
+
 # -----------------------------------------------------------------------------
 # Colors 
 # -----------------------------------------------------------------------------
+color index_flags default blue '~p'
+color index_flags black yellow '~O'
+color index_flags default blue '~N'
+color index black red '~H S'
 color index yellow    default    '~l'
 color index default   red        '~F'
+
+color body magenta default 'https?://[[:print:]]+'
+color body yellow default '[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+'
+
+color quoted green default
+color quoted1 blue default
+color quoted2 red default
+color quoted3 yellow default
+color quoted4 magenta default
 
 # -----------------------------------------------------------------------------
 source ~/.neomutt/alias
