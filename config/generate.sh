@@ -5,7 +5,7 @@ FILE=neomuttrc-example
 SEP="##########################################################################"
 
 echo $SEP >> $FILE
-echo "#   00 - Neomutt configuration" >> $FILE
+echo "#   00 - NeoMutt configuration" >> $FILE
 echo $SEP >> $FILE
 cat variable/00-* >> $FILE
 

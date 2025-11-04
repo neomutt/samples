@@ -1,4 +1,4 @@
-# Neomutt configuration file - demo configuration
+# NeoMutt configuration file - demo configuration
 #
 
 set realname       = "Your name"
@@ -141,7 +141,7 @@ color status     brightgreen    blue
 
 
 #==========================================================
-# Neomutt Guide Colors
+# NeoMutt Guide Colors
 #==========================================================
 
 #==========================================================

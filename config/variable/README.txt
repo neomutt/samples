@@ -1,4 +1,4 @@
-00 - Neomutt configuration
+00 - NeoMutt configuration
 01 - Basic personal setup
 02 - Mailbox and folders
 03 - Compose email 

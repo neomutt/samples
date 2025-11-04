@@ -5,7 +5,7 @@ FILE=neomuttrc-imap-example
 SEP="##########################################################################"
 
 echo $SEP >> $FILE
-echo "#  IMAP - Neomutt configuration" >> $FILE
+echo "#  IMAP - NeoMutt configuration" >> $FILE
 echo $SEP >> $FILE
 
 cat variable/01-002-realname.txt >> $FILE
